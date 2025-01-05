@@ -1,10 +1,21 @@
 import styled from "@emotion/styled";
+import LayoutSidebarExpanded from "../sidebar-expanded";
+import LayoutSidebarCollapsed from "../sidebar-collapsed";
 
 const Wrapper = styled.div`
-  width: 50px;
-  background-color: yellow;
+  width: 370px;
+  height: 100%;
+  display: flex;
+  order: 100;
 `;
 
 export default function LayoutSidebar() {
-  return <Wrapper>여기는 사이드바입니다.</Wrapper>;
+  return (
+    <>
+      <Wrapper>
+        <LayoutSidebarExpanded />
+        <LayoutSidebarCollapsed />
+      </Wrapper>
+    </>
+  );
 }

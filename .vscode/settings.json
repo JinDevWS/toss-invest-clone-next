@@ -1,4 +1,7 @@
 {
   "editor.formatOnSave": true,
-  "editor.defultFormatter": "esbenp.prettier-vscode"
+  "editor.defultFormatter": "esbenp.prettier-vscode",
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  }
 }

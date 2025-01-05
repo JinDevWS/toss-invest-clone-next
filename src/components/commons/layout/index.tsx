@@ -2,6 +2,11 @@ import LayoutHeader from "../layout/header";
 import LayoutSidebar from "../layout/sidebar";
 import LayoutFooter from "../layout/footer";
 import { useRouter } from "next/router";
+import {
+  LayoutWrapper,
+  MainWrapper,
+  ContentsWrapper,
+} from "@/styles/layout/Layout.js";
 
 const HIDDEN_HEADERS = [
   //   "/section13/13-01-library-icon",
@@ -23,10 +28,16 @@ export default function Layout(props: ILayoutProps): React.ReactElement {
 
   return (
     <>
-      <LayoutSidebar />
-      {!isHiddenHeader && <LayoutHeader />}
-      <div>{props.children}</div>
-      <LayoutFooter />
+      <LayoutWrapper>
+        <LayoutSidebar />
+        <MainWrapper>
+          {!isHiddenHeader && <LayoutHeader />}
+          <ContentsWrapper>
+            <div>{props.children}</div>
+          </ContentsWrapper>
+          <LayoutFooter />
+        </MainWrapper>
+      </LayoutWrapper>
     </>
   );
 }
