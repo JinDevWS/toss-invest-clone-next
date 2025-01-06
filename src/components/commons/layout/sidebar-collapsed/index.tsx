@@ -1,10 +1,21 @@
 import styled from "@emotion/styled";
 
 const Wrapper = styled.div`
-  width: 56px;
   background-color: yellow;
   display: flex;
-  order: 1;
+  flex-direction: column;
+  justify-content: normal;
+  align-items: center;
+  gap: 0px;
+  visibility: visible;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 6px 0 24px;
+  width: 56px;
+  height: inherit;
+  overflow: auto;
+  z-index: 1;
 `;
 
 export default function LayoutSidebarCollapsed() {

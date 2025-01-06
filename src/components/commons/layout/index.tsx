@@ -27,17 +27,15 @@ export default function Layout(props: ILayoutProps): React.ReactElement {
   console.log(isHiddenHeader);
 
   return (
-    <>
-      <LayoutWrapper>
-        <LayoutSidebar />
-        <MainWrapper>
-          {!isHiddenHeader && <LayoutHeader />}
-          <ContentsWrapper>
-            <div>{props.children}</div>
-          </ContentsWrapper>
-          <LayoutFooter />
-        </MainWrapper>
-      </LayoutWrapper>
-    </>
+    <LayoutWrapper>
+      <MainWrapper>
+        {!isHiddenHeader && <LayoutHeader />}
+        <ContentsWrapper>
+          <div>{props.children}</div>
+        </ContentsWrapper>
+        <LayoutFooter />
+      </MainWrapper>
+      <LayoutSidebar />
+    </LayoutWrapper>
   );
 }
