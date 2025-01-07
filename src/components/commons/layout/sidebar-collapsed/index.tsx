@@ -5,7 +5,8 @@ import {
   CheckSquareFilled,
   FireFilled,
 } from "@ant-design/icons";
-import { useState } from "react";
+import { useRecoilValue } from "recoil";
+import { sidebarClickBtnState } from "@/src/commons/atom/sidebarClickBtnState.js";
 
 const Wrapper = styled.div`
   display: flex;
@@ -77,10 +78,7 @@ interface IbtnData {
   text: string;
 }
 
-export default function LayoutSidebarCollapsed() {
-  const [clickBtn, setClickBtn] = useState(false);
-  const [active, setActive] = useState(false);
-
+export default function LayoutSidebarCollapsed(props): React.ReactElement {
   const btnData = [
     { id: "myInvest", href: "myInvest", icon: <BankFilled />, text: "내 투자" },
     {
@@ -98,39 +96,7 @@ export default function LayoutSidebarCollapsed() {
     { id: "realtime", href: "realtime", icon: <FireFilled />, text: "실시간" },
   ];
 
-  // state를 사용하여 click 스타일링 구현
-  // 1. 클릭 시 진하게 활성화
-  // 2. 활성화된 버튼 한번 더 클릭 시 흐리게 비활성화
-  const handleClick = (e: HtmlElement): void => {
-    e.preventDefault();
-    e.stopPropagation();
-    // currentTarget은 이벤트가 핸들링되는 때에만 접근 가능하다.
-    // 비동기콜은 task queue에 들어가 있다가 스택에서 호출되는 것이기 때문에
-    // event.currentTarget을 잃어버린다.
-    // 그렇기 때문에 핸들링 함수 최상단에서 변수에 할당 후
-    // 비동기 로직 내부에서 사용하는 것으로 e.currentTarget 을 참조하면 된다.
-    const currentTarget = e.currentTarget;
-    setClickBtn((preClickBtn: string | boolean): string | boolean => {
-      // 현재 클릭한 버튼이 이전 클릭한 버튼과 같다면 흐리게 비활성화
-      return currentTarget.id == preClickBtn ? false : currentTarget.id;
-    });
-  };
-
-  const handleMouseOver = (e: HtmlElement): void => {
-    e.preventDefault();
-    e.stopPropagation();
-    // currentTarget은 이벤트가 핸들링되는 때에만 접근 가능하다.
-    const currentTarget = e.currentTarget;
-    setActive((): string | boolean => {
-      return currentTarget.id;
-    });
-  };
-
-  const handleMouseOut = (e: HtmlElement): void => {
-    e.preventDefault();
-    e.stopPropagation();
-    setActive(false);
-  };
+  const clickBtnState = useRecoilValue(sidebarClickBtnState);
 
   return (
     <Wrapper>
@@ -142,7 +108,7 @@ export default function LayoutSidebarCollapsed() {
           1. 클릭 시 진하게 활성화
           2. 활성화된 버튼 한번 더 클릭 시 흐리게 비활성화
         */}
-        {btnData.map((el: IbtnData, index: number): HtmlElement => {
+        {btnData.map((el: IbtnData, index: number): React.ReactElement => {
           return (
             <IconBox key={btnData[index].id}>
               <IconAbutton
@@ -150,18 +116,20 @@ export default function LayoutSidebarCollapsed() {
                 id={btnData[index].id}
                 isHrMeet={index === 2 ? true : false}
                 active={
-                  active === btnData[index].id ? btnData[index].id : false
+                  props.active === btnData[index].id ? btnData[index].id : false
                 }
                 clickBtn={
-                  clickBtn === btnData[index].id ? btnData[index].id : false
+                  clickBtnState === btnData[index].id
+                    ? btnData[index].id
+                    : false
                 }
-                onClick={handleClick}
-                onMouseOver={handleMouseOver}
-                onMouseOut={handleMouseOut}
+                onClick={props.handleClick}
+                onMouseOver={props.handleMouseOver}
+                onMouseOut={props.handleMouseOut}
               >
                 <Icon
-                  active={active === btnData[index].id}
-                  clickBtn={clickBtn === btnData[index].id}
+                  active={props.active === btnData[index].id}
+                  clickBtn={clickBtnState === btnData[index].id}
                 >
                   {btnData[index].icon}
                 </Icon>
