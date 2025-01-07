@@ -7,7 +7,7 @@ export const LayoutWrapper = styled.div`
   z-index: 0;
 `;
 
-export const MainWrapper = styled.div`
+export const MainWrapper = styled.main`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
