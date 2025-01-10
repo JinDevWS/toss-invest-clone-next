@@ -6,7 +6,7 @@ import {
   FireFilled,
 } from "@ant-design/icons";
 import { useRecoilValue } from "recoil";
-import { sidebarClickBtnState } from "@/src/commons/atom/sidebarClickBtnState.js";
+import { sidebarClickBtnState } from "@/src/commons/atom/sidebarClickBtnState.tsx";
 
 const Wrapper = styled.div`
   display: flex;
@@ -25,6 +25,7 @@ const Wrapper = styled.div`
   z-index: 1;
   background-color: #f6f7f9;
   padding: 12px 0;
+  border-left: 1px solid #dde1e5;
 `;
 
 const SidebarNav = styled.nav`

@@ -1,28 +1,9 @@
 import styled from "@emotion/styled";
-import { keyframes } from "@emotion/react";
 import LayoutSidebarExpanded from "../sidebar-expanded";
 import LayoutSidebarCollapsed from "../sidebar-collapsed";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
-import { sidebarClickBtnState } from "@/src/commons/atom/sidebarClickBtnState.js";
-
-const sidebarCollapse = keyframes`
-0%{
-  width: 370px;
-}
-100%{
-  width: 56px;
-}
-`;
-
-const sidebarExpand = keyframes`
-0%{
-  width: 56px;
-}
-100%{
-  width: 370px;
-}
-`;
+import { sidebarClickBtnState } from "@/src/commons/atom/sidebarClickBtnState.tsx";
 
 const Wrapper = styled.div`
   width: ${(props: string | boolean): string =>
@@ -34,9 +15,7 @@ const Wrapper = styled.div`
   right: 0;
   z-index: 10001;
   overflow: clip;
-  animation: ${(props: string | boolean): unknown =>
-      props.clickBtnState ? sidebarExpand : sidebarCollapse}
-    0.1s linear;
+  transition: width 0.1s linear;
 `;
 
 export default function LayoutSidebar(): React.ReactElement {
@@ -52,7 +31,7 @@ export default function LayoutSidebar(): React.ReactElement {
     e.preventDefault();
     e.stopPropagation();
     // currentTarget은 이벤트가 핸들링되는 때에만 접근 가능하다.
-    // 비동기콜은 task queue에 들어가 있다가 스택에서 호출되는 것이기 때문에
+    // 비동기콜(set state)은 task queue에 들어가 있다가 스택에서 호출되는 것이기 때문에
     // event.currentTarget을 잃어버린다.
     // 그렇기 때문에 핸들링 함수 최상단에서 변수에 할당 후
     // 비동기 로직 내부에서 사용하는 것으로 e.currentTarget 을 참조하면 된다.
