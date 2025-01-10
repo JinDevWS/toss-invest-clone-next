@@ -1,78 +1,13 @@
-import { CopyFilled, DownOutlined, CheckOutlined } from "@ant-design/icons";
+import { DownOutlined, CheckOutlined } from "@ant-design/icons";
 import styled from "@emotion/styled";
-import { useState, useEffect } from "react";
-
-const Section = styled.section`
-  display: flex;
-  flex-direction: column;
-  padding: 0 16px;
-  color: #6b7684;
-`;
-
-const Header = styled.header`
-  display: flex;
-  flex-direction: column;
-`;
-
-const H2Wrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const H2 = styled.h2`
-  font-size: 17px;
-  color: #333d4b;
-`;
-
-const DollarSwitch = styled.div`
-  width: 46px;
-  height: 26px;
-  font-size: 12px;
-  font-weight: bold;
-  border: 0;
-  border-radius: 5px;
-  background-color: #e9ecef;
-  display: flex;
-  align-items: center;
-  position: relative;
-`;
-
-const DollarBtn = styled.a`
-  width: 50%;
-  height: 100%;
-  border: 0;
-  border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1;
-`;
-
-const DollarToggleBtn = styled.span`
-  isolation: isolate;
-  width: 23px;
-  height: 26px;
-  border-radius: 5px;
-  transform: scale(0.85);
-  position: absolute;
-  background-color: white;
-  box-shadow: -1px 1px 3px #ccd1d5;
-  left: ${(props) => (props.isDollar ? "0px" : "23px")};
-  transition: left 100ms linear;
-  z-index: 0;
-`;
-
-const Hr = styled.hr`
-  margin: 15px -17px 15px 0px;
-  border-top: 1px solid #e9e9e9;
-  border-bottom: 0px;
-`;
-
-const FilterWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
+import SidebarH2DollarSwitch from "../commons/SidebarH2DollarSwitch.tsx";
+import SidebarHr from "../commons/SidebarHr.tsx";
+import SidebarNoItem from "../commons/SidebarNoItem.tsx";
+import {
+  Section,
+  Header,
+  FilterWrapper,
+} from "@/styles/sidebar/SidebarExpandedSection.js";
 
 const MoneySwitch = styled.div`
   width: 100px;
@@ -167,35 +102,9 @@ const SelectOptionIcon = styled(SelectOption)`
   padding: 5px 0 5px 5px;
 `;
 
-const Article = styled.article`
-  width: 100%;
-  height: 45%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-const NoItemIcon = styled.div`
-  width: 100%;
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: center;
-  font-size: 40px;
-  color: #c7cccd;
-`;
-
-const NoItemText = styled.p`
-  font-size: 14px;
-  font-weight: bold;
-`;
-
-export default function SidebarExpandedMyInvest(): React.ReactElement {
-  const [isDollar, setIsDollar] = useState(false);
-  const [isNow, setIsNow] = useState(false);
-  const [selected, setSelected] = useState("ganada");
-  const [selectBtnText, setSelectBtnText] = useState("가나다 순");
-  const [disp, setDisp] = useState(false);
+export default function SidebarExpandedMyInvest(props): React.ReactElement {
+  const h2Text = "내 투자";
+  const noItemText = "보유 종목이 없어요";
 
   const optionList = [
     { value: "ganada", label: "가나다 순" },
@@ -208,73 +117,27 @@ export default function SidebarExpandedMyInvest(): React.ReactElement {
     { value: "custom", label: "직접 설정하기" },
   ];
 
-  const dollarBtnHandleClick = (
-    e: React.MouseEvent<HTMLButtonElement>,
-  ): void => {
-    const currentTarget = e.currentTarget;
-    setIsDollar((): boolean => {
-      return currentTarget.id === "dollar" ? true : false;
-    });
-  };
-
-  const nowBtnHandleClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
-    const currentTarget = e.currentTarget;
-    setIsNow((): boolean => {
-      return currentTarget.id === "now" ? true : false;
-    });
-  };
-
-  const selectBtnHandleClick = (
-    e: React.MouseEvent<HTMLButtonElement>,
-  ): void => {
-    e.preventDefault();
-    e.stopPropagation();
-    setDisp(!disp);
-  };
-
-  const optionHandleClick = (e: React.MouseEvent<HTMLSpanElement>): void => {
-    e.preventDefault();
-    const currentTarget = e.currentTarget;
-    setSelected((): string => {
-      return currentTarget.id ? currentTarget.id : "ganada";
-    });
-    setSelectBtnText(currentTarget.innerHTML);
-  };
-
-  // 렌더링 이후에 호출되도록 함
-  useEffect((): void => {
-    window.onclick = function (e: React.MouseEvent<HTMLPointerEvent>): void {
-      if (e.target.id !== "selectMenu" && e.target.id !== "selectBtn") {
-        setDisp(false);
-      }
-    };
-  }, []);
-
   return (
     <Section>
       <Header>
-        <H2Wrapper>
-          <H2>내 투자</H2>
-          <DollarSwitch>
-            <DollarToggleBtn isDollar={isDollar}></DollarToggleBtn>
-            <DollarBtn href="#" id="dollar" onClick={dollarBtnHandleClick}>
-              $
-            </DollarBtn>
-            <DollarBtn href="#" id="won" onClick={dollarBtnHandleClick}>
-              원
-            </DollarBtn>
-          </DollarSwitch>
-        </H2Wrapper>
-        <Hr />
+        <SidebarH2DollarSwitch
+          h2Text={h2Text}
+          isDollar={props.isDollar}
+          dollarBtnHandleClick={props.dollarBtnHandleClick}
+        />
+        <SidebarHr />
         <FilterWrapper>
           <SelectWrapper>
-            <StyledSelectButton onClick={selectBtnHandleClick} id="selectBtn">
-              {selectBtnText}
+            <StyledSelectButton
+              onClick={props.selectBtnHandleClick}
+              id="selectBtn"
+            >
+              {props.selectBtnText}
               <SelectBtnIcon>
                 <DownOutlined />
               </SelectBtnIcon>
             </StyledSelectButton>
-            {disp && (
+            {props.disp && (
               <StyledSelectMenu id="selectMenu">
                 {optionList.map(
                   (el: string, index: number): React.ReactElement => {
@@ -283,10 +146,10 @@ export default function SidebarExpandedMyInvest(): React.ReactElement {
                         key={index}
                         id={el.value}
                         label={el.label}
-                        onClick={optionHandleClick}
+                        onClick={props.optionHandleClick}
                       >
                         {el.label}
-                        {selected === el.value && (
+                        {props.selected === el.value && (
                           <SelectOptionIcon>
                             <CheckOutlined />
                           </SelectOptionIcon>
@@ -299,22 +162,17 @@ export default function SidebarExpandedMyInvest(): React.ReactElement {
             )}
           </SelectWrapper>
           <MoneySwitch>
-            <MoneyToggleBtn isNow={isNow}></MoneyToggleBtn>
-            <MoneyBtn href="#" id="now" onClick={nowBtnHandleClick}>
+            <MoneyToggleBtn isNow={props.isNow}></MoneyToggleBtn>
+            <MoneyBtn href="#" id="now" onClick={props.nowBtnHandleClick}>
               현재가
             </MoneyBtn>
-            <MoneyBtn href="#" id="evaluate" onClick={nowBtnHandleClick}>
+            <MoneyBtn href="#" id="evaluate" onClick={props.nowBtnHandleClick}>
               평가금
             </MoneyBtn>
           </MoneySwitch>
         </FilterWrapper>
       </Header>
-      <Article>
-        <NoItemIcon>
-          <CopyFilled />
-        </NoItemIcon>
-        <NoItemText>보유 종목이 없어요</NoItemText>
-      </Article>
+      <SidebarNoItem noItemText={noItemText} />
     </Section>
   );
 }
