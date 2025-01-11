@@ -77,7 +77,6 @@ export default function LayoutSidebarExpanded(): React.ReactElement {
   ): void => {
     e.preventDefault();
     e.stopPropagation();
-    console.log(!disp);
     setDisp(!disp);
   };
 
@@ -93,7 +92,6 @@ export default function LayoutSidebarExpanded(): React.ReactElement {
   // 렌더링 이후에 호출되도록 함
   useEffect((): void => {
     window.onclick = function (e: React.MouseEvent<HTMLPointerEvent>): void {
-      console.log(`window.onclick=${e}`);
       if (
         e.currentTarget.id !== "selectMenu" &&
         e.currentTarget.id !== "selectBtn"
