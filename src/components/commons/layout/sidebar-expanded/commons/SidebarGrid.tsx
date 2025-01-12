@@ -1,7 +1,7 @@
 import { HeartFilled } from "@ant-design/icons";
 import styled from "@emotion/styled";
 import { useRecoilValue } from "recoil";
-import { sidebarClickBtnState } from "@/src/commons/atom/sidebarClickBtnState.tsx";
+import { sidebarClickBtnState } from "@/src/commons/atom/sidebarClickBtnState.ts";
 
 const Article = styled.article`
   display: flex;

@@ -3,7 +3,7 @@ import LayoutSidebarExpanded from "../sidebar-expanded";
 import LayoutSidebarCollapsed from "../sidebar-collapsed";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
-import { sidebarClickBtnState } from "@/src/commons/atom/sidebarClickBtnState.tsx";
+import { sidebarClickBtnState } from "@/src/commons/atom/sidebarClickBtnState.ts";
 
 const Wrapper = styled.div`
   width: ${(props: string | boolean): string =>

@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { useState, useEffect } from "react";
 import { keyframes } from "@emotion/react";
 import { useRecoilValue } from "recoil";
-import { sidebarClickBtnState } from "@/src/commons/atom/sidebarClickBtnState.tsx";
+import { sidebarClickBtnState } from "@/src/commons/atom/sidebarClickBtnState.ts";
 import SidebarExpandedMyInvest from "../sidebar-expanded/myinvest";
 import SidebarExpandedInterest from "../sidebar-expanded/interest";
 import SidebarExpandedRecent from "../sidebar-expanded/recent";
@@ -52,8 +52,6 @@ export default function LayoutSidebarExpanded(): React.ReactElement {
 
   const [isDollar, setIsDollar] = useState(false);
   const [isNow, setIsNow] = useState(false);
-  const [selected, setSelected] = useState("ganada");
-  const [selectBtnText, setSelectBtnText] = useState("가나다 순");
   const [disp, setDisp] = useState(false);
 
   const dollarBtnHandleClick = (
@@ -80,15 +78,6 @@ export default function LayoutSidebarExpanded(): React.ReactElement {
     setDisp(!disp);
   };
 
-  const optionHandleClick = (e: React.MouseEvent<HTMLSpanElement>): void => {
-    e.preventDefault();
-    const currentTarget = e.currentTarget;
-    setSelected((): string => {
-      return currentTarget.id ? currentTarget.id : "ganada";
-    });
-    setSelectBtnText(currentTarget.innerHTML);
-  };
-
   // 렌더링 이후에 호출되도록 함
   useEffect((): void => {
     window.onclick = function (e: React.MouseEvent<HTMLPointerEvent>): void {
@@ -108,12 +97,9 @@ export default function LayoutSidebarExpanded(): React.ReactElement {
           isDollar={isDollar}
           isNow={isNow}
           disp={disp}
-          selected={selected}
-          selectBtnText={selectBtnText}
           dollarBtnHandleClick={dollarBtnHandleClick}
           nowBtnHandleClick={nowBtnHandleClick}
           selectBtnHandleClick={selectBtnHandleClick}
-          optionHandleClick={optionHandleClick}
         />
       )}
       {clickBtnState === "interest" && (
@@ -132,6 +118,8 @@ export default function LayoutSidebarExpanded(): React.ReactElement {
         <SidebarExpandedRealtime
           isDollar={isDollar}
           dollarBtnHandleClick={dollarBtnHandleClick}
+          disp={disp}
+          selectBtnHandleClick={selectBtnHandleClick}
         />
       )}
     </Wrapper>

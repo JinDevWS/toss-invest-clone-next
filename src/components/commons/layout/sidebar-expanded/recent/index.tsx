@@ -1,4 +1,3 @@
-import styled from "@emotion/styled";
 import SidebarH2DollarSwitch from "../commons/SidebarH2DollarSwitch.tsx";
 import SidebarHr from "../commons/SidebarHr.tsx";
 import { Section, Header } from "@/styles/sidebar/SidebarExpandedSection.js";
