@@ -18,7 +18,7 @@ export default function SidebarExpandedMyInvest(props): React.ReactElement {
         />
         <SidebarHr />
       </Header>
-      <SidebarGrid itemList={itemList} />
+      <SidebarGrid isDollar={props.isDollar} itemList={itemList} />
     </Section>
   );
 }

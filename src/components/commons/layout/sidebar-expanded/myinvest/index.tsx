@@ -51,8 +51,8 @@ const MoneyToggleBtn = styled.span`
 export default function SidebarExpandedMyInvest(props): React.ReactElement {
   const h2Text = "내 투자";
   const noItemText = "보유 종목이 없어요";
-  const selectBtnId = "selectBtn";
-  const selectMenuId = "selectMenu";
+  const selectMyInvBtnId = "selectMyInvBtn";
+  const selectMyInvMenuId = "selectMyInvMenu";
   const optionList = sidebarMyInvestOptionList;
   const selectedInitValue = "ganada";
   const selectBtnInitText = "가나다 순";
@@ -68,13 +68,11 @@ export default function SidebarExpandedMyInvest(props): React.ReactElement {
         <SidebarHr />
         <FilterWrapper>
           <SidebarSelect
-            selectBtnId={selectBtnId}
-            selectMenuId={selectMenuId}
+            selectBtnId={selectMyInvBtnId}
+            selectMenuId={selectMyInvMenuId}
             optionList={optionList}
             selectedInitValue={selectedInitValue}
             selectBtnInitText={selectBtnInitText}
-            disp={props.disp}
-            selectBtnHandleClick={props.selectBtnHandleClick}
           />
           <MoneySwitch>
             <MoneyToggleBtn isNow={props.isNow}></MoneyToggleBtn>

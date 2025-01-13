@@ -7,7 +7,6 @@ const Article = styled.article`
   display: flex;
   flex-direction: column;
   margin: 0 -10px;
-  padding-top: 18px;
   overflow: scroll;
   scrollbar-width: none;
   overscroll-behavior-y: none;
@@ -16,6 +15,7 @@ const Article = styled.article`
 const H3 = styled.h3`
   font-size: 15px;
   margin-bottom: 3px;
+  padding-top: 18px;
   color: #2c3646;
   margin-left: 10px;
 `;
@@ -161,10 +161,12 @@ export default function SidebarGrid(props): React.ReactElement {
                     src={`./assets/images/${el.img}`}
                     alt="주식 아이콘"
                   />
-                  <ImgIconKrOrUs
-                    src={`./assets/images/${el.krOrUs === "us" ? "us.png" : "kr.png"}`}
-                    alt={el.krOrUs === "us" ? "미국 주식" : "한국 주식"}
-                  />
+                  {el.krOrUs === "us" && (
+                    <ImgIconKrOrUs
+                      src="./assets/images/us.png"
+                      alt="미국 주식"
+                    />
+                  )}
                 </ImgBox>
                 <ItemTitle>{el.title}</ItemTitle>
                 <NumberBox>

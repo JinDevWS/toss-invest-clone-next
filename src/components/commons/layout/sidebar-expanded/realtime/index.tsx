@@ -3,6 +3,7 @@ import SidebarH2DollarSwitch from "../commons/SidebarH2DollarSwitch.tsx";
 import SidebarHr from "../commons/SidebarHr.tsx";
 import { Section, Header } from "@/styles/sidebar/SidebarExpandedSection.js";
 import { sidebarInterestListItems } from "@/src/commons/stores/sidebarInterestListItems.ts";
+import { sidebarRealtimeKrListItems } from "@/src/commons/stores/sidebarRealtimeKrListItems.ts";
 import SidebarGrid from "../commons/SidebarGrid.tsx";
 import SidebarSelect from "../commons/SidebarSelect.tsx";
 import { useState } from "react";
@@ -51,13 +52,18 @@ const DomesticOrForeignBtn = styled.a`
 
 const SelectBox = styled.div`
   display: flex;
+  justify-content: space-between;
+  margin: 12px 0 5px 0;
 `;
 
 export default function SidebarExpandedRealtime(props): React.ReactElement {
   const h2Text = "실시간 차트";
-  const itemList = sidebarInterestListItems;
   const [domesticOrForeign, setDomesticOrForeign] =
     useState("sidebarFilterAll");
+  const itemList =
+    domesticOrForeign === "sidebarFilterDomestic"
+      ? sidebarRealtimeKrListItems
+      : sidebarInterestListItems;
   const selectBtnId = "selectBtn";
   const selectMenuId = "selectMenu";
   const selectTimeBtnId = "selectTimeBtn";
@@ -119,8 +125,6 @@ export default function SidebarExpandedRealtime(props): React.ReactElement {
           optionList={sidebarRealTimeFilterOptionList}
           selectedInitValue={selectedInitValue}
           selectBtnInitText={selectBtnInitText}
-          disp={props.disp}
-          selectBtnHandleClick={props.selectBtnHandleClick}
         />
         <SidebarSelect
           selectBtnId={selectTimeBtnId}
@@ -128,11 +132,9 @@ export default function SidebarExpandedRealtime(props): React.ReactElement {
           optionList={sidebarRealTimeFilterTimeOptionList}
           selectedInitValue={selectedTimeInitValue}
           selectBtnInitText={selectTimeBtnInitText}
-          disp={props.disp}
-          selectBtnHandleClick={props.selectBtnHandleClick}
         />
       </SelectBox>
-      <SidebarGrid itemList={itemList} />
+      <SidebarGrid isDollar={props.isDollar} itemList={itemList} />
     </Section>
   );
 }

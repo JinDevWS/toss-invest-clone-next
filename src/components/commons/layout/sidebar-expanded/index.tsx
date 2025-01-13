@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { keyframes } from "@emotion/react";
 import { useRecoilValue } from "recoil";
 import { sidebarClickBtnState } from "@/src/commons/atom/sidebarClickBtnState.ts";
@@ -52,7 +52,6 @@ export default function LayoutSidebarExpanded(): React.ReactElement {
 
   const [isDollar, setIsDollar] = useState(false);
   const [isNow, setIsNow] = useState(false);
-  const [disp, setDisp] = useState(false);
 
   const dollarBtnHandleClick = (
     e: React.MouseEvent<HTMLButtonElement>,
@@ -70,36 +69,14 @@ export default function LayoutSidebarExpanded(): React.ReactElement {
     });
   };
 
-  const selectBtnHandleClick = (
-    e: React.MouseEvent<HTMLButtonElement>,
-  ): void => {
-    e.preventDefault();
-    e.stopPropagation();
-    setDisp(!disp);
-  };
-
-  // 렌더링 이후에 호출되도록 함
-  useEffect((): void => {
-    window.onclick = function (e: React.MouseEvent<HTMLPointerEvent>): void {
-      if (
-        e.currentTarget.id !== "selectMenu" &&
-        e.currentTarget.id !== "selectBtn"
-      ) {
-        setDisp(false);
-      }
-    };
-  }, []);
-
   return (
     <Wrapper clickBtnState={clickBtnState}>
       {clickBtnState === "myInvest" && (
         <SidebarExpandedMyInvest
           isDollar={isDollar}
           isNow={isNow}
-          disp={disp}
           dollarBtnHandleClick={dollarBtnHandleClick}
           nowBtnHandleClick={nowBtnHandleClick}
-          selectBtnHandleClick={selectBtnHandleClick}
         />
       )}
       {clickBtnState === "interest" && (
@@ -118,8 +95,6 @@ export default function LayoutSidebarExpanded(): React.ReactElement {
         <SidebarExpandedRealtime
           isDollar={isDollar}
           dollarBtnHandleClick={dollarBtnHandleClick}
-          disp={disp}
-          selectBtnHandleClick={selectBtnHandleClick}
         />
       )}
     </Wrapper>
