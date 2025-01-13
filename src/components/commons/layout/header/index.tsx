@@ -1,13 +1,100 @@
 import styled from "@emotion/styled";
+import { SearchOutlined } from "@ant-design/icons";
 
-export const HeaderWrapper = styled.div`
+const HeaderWrapper = styled.div`
   width: 100%;
   height: 60px;
-  background-color: pink;
   position: sticky;
   top: 0;
   z-index: 10001;
+  display: flex;
+  align-items: center;
+  padding: 0 36px 0 20px;
 `;
+
+const H1 = styled.h1`
+  width: 80px;
+  height: 20px;
+`;
+
+const LogoBtn = styled.a`
+  display: block;
+  width: 100%;
+  height: 100%;
+`;
+
+const Logo = styled.img`
+  display: block;
+  width: 100%;
+  height: 100%;
+`;
+
+const Nav = styled.nav`
+  flex-grow: 1;
+  text-align: center;
+  font-size: 15px;
+`;
+
+const NavBtn = styled.a`
+  padding: 10px;
+  margin: 0px 5px;
+  font-weight: bold;
+  color: #6b7684;
+  &:hover {
+    color: #333d4b;
+  }
+`;
+
+const SearchBtn = styled.button`
+  width: 200px;
+  padding: 8px 15px;
+  text-align: left;
+  font-size: 15px;
+  color: #8b95a1;
+  background-color: #f3f4f5;
+  border: 0;
+  border-radius: 20px;
+  margin-left: 10px;
+`;
+
+const SlashBox = styled.div`
+  display: inline-block;
+  border: 1px solid #d6dade;
+  background-color: #eeeff1;
+  border-radius: 4px;
+  padding: 2px 7px 1px 7px;
+  margin-left: 10px;
+`;
+
+const LoginBtn = styled.button`
+  width: 60px;
+  height: 30px;
+  border-radius: 7px;
+  border: 0;
+  color: white;
+  background-color: #2371eb;
+  font-weight: bold;
+`;
+
 export default function LayoutHeader() {
-  return <HeaderWrapper>여기는 헤더입니다.</HeaderWrapper>;
+  return (
+    <HeaderWrapper>
+      <H1>
+        <LogoBtn href="#">
+          <Logo src="./assets/images/logo_black.png" alt="토스증권" />
+        </LogoBtn>
+      </H1>
+      <Nav>
+        <NavBtn href="#">홈</NavBtn>
+        <NavBtn href="#">뉴스</NavBtn>
+        <NavBtn href="#">주식 골라보기</NavBtn>
+        <NavBtn href="#">내 계좌</NavBtn>
+        <SearchBtn type="button">
+          <SearchOutlined />
+          <SlashBox>/</SlashBox> 를 눌러 검색하세요
+        </SearchBtn>
+      </Nav>
+      <LoginBtn>로그인</LoginBtn>
+    </HeaderWrapper>
+  );
 }
