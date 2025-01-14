@@ -1,7 +1,11 @@
 import { HeartFilled } from "@ant-design/icons";
 import styled from "@emotion/styled";
 import { useRecoilValue } from "recoil";
-import { sidebarClickBtnState } from "@/src/commons/atom/sidebarClickBtnState.ts";
+import { sidebarClickBtnState } from "@/src/commons/atom/sidebarClickBtnState";
+import { ISidebarInterestListItems } from "@/src/commons/stores/sidebarInterestListItems";
+import { ISidebarRealtimeKrListItems } from "@/src/commons/stores/sidebarRealtimeKrListItems";
+
+const BASE_IMAGE_PATH = "./assets/images";
 
 const Article = styled.article`
   display: flex;
@@ -109,16 +113,9 @@ const HeartFilledHover = styled(HeartFilled)`
   }
 `;
 
-interface IlistItemsData {
-  id: string;
-  img: string;
-  krOrUs: string;
-  title: string;
-  priceWon: number;
-  priceDollar: number;
-  upOrDownWon: number;
-  upOrDownDollar: number;
-  upOrDownPercent: number;
+interface ISidebarGridProps {
+  itemList: ISidebarInterestListItems[] | ISidebarRealtimeKrListItems[];
+  isDollar: boolean;
 }
 
 const EXCHANGE_RATE = 0.0006816; // 환율 상수
@@ -137,7 +134,10 @@ const upOrDownPercentCalc = (
   return value.toFixed(isDollar ? 2 : 0); // 달러는 소수점 2자리, 원화는 정수 처리
 };
 
-export default function SidebarGrid(props): React.ReactElement {
+export default function SidebarGrid({
+  isDollar,
+  itemList,
+}: ISidebarGridProps): React.ReactElement {
   const clickBtnState = useRecoilValue(sidebarClickBtnState);
 
   return (
@@ -149,64 +149,62 @@ export default function SidebarGrid(props): React.ReactElement {
         </>
       )}
       <ListGrid>
-        {props.itemList.map(
-          (el: IlistItemsData, index: number): React.ReactElement => {
-            return (
-              <ListGridItem key={el.id}>
-                {clickBtnState === "realtime" && (
-                  <IndexNumBox>{index + 1}</IndexNumBox>
-                )}
-                <ImgBox>
-                  <ImgIcon
-                    src={`./assets/images/${el.img}`}
-                    alt="주식 아이콘"
+        {itemList.map((el, index): React.ReactElement => {
+          return (
+            <ListGridItem key={el.id}>
+              {clickBtnState === "realtime" && (
+                <IndexNumBox>{index + 1}</IndexNumBox>
+              )}
+              <ImgBox>
+                <ImgIcon
+                  src={`${BASE_IMAGE_PATH}/${el.img}`}
+                  alt="주식 아이콘"
+                />
+                {el.krOrUs === "us" && (
+                  <ImgIconKrOrUs
+                    src={`${BASE_IMAGE_PATH}/us.png`}
+                    alt="미국 주식"
                   />
-                  {el.krOrUs === "us" && (
-                    <ImgIconKrOrUs
-                      src="./assets/images/us.png"
-                      alt="미국 주식"
-                    />
-                  )}
-                </ImgBox>
-                <ItemTitle>{el.title}</ItemTitle>
-                <NumberBox>
-                  <Price>
-                    {props.isDollar
-                      ? `$${dollarCalc(el.priceWon)}`
-                      : `${el.priceWon.toLocaleString("ko-KR")}원`}
-                  </Price>
-                  <UpDownPrice>
-                    {props.isDollar
-                      ? `+$${upOrDownPercentCalc(
-                          props.isDollar,
+                )}
+              </ImgBox>
+              <ItemTitle>{el.title}</ItemTitle>
+              <NumberBox>
+                <Price>
+                  {isDollar
+                    ? `$${dollarCalc(el.priceWon)}`
+                    : `${el.priceWon.toLocaleString("ko-KR")}원`}
+                </Price>
+                <UpDownPrice>
+                  {isDollar
+                    ? `+$${upOrDownPercentCalc(
+                        isDollar,
+                        el.priceWon,
+                        el.upOrDownPercent,
+                      )}`
+                    : `+${Number(
+                        upOrDownPercentCalc(
+                          isDollar,
                           el.priceWon,
                           el.upOrDownPercent,
-                        )}`
-                      : `+${Number(
-                          upOrDownPercentCalc(
-                            props.isDollar,
-                            el.priceWon,
-                            el.upOrDownPercent,
-                          ),
-                        ).toLocaleString("ko-KR")}원`}
-                    {` (${el.upOrDownPercent}%)`}
-                  </UpDownPrice>
-                </NumberBox>
-                {clickBtnState === "interest" && (
-                  <IconBox>
-                    <HeartFilledHover />
-                  </IconBox>
-                )}
-              </ListGridItem>
-            );
-          },
-        )}
+                        ),
+                      ).toLocaleString("ko-KR")}원`}
+                  {` (${el.upOrDownPercent}%)`}
+                </UpDownPrice>
+              </NumberBox>
+              {clickBtnState === "interest" && (
+                <IconBox>
+                  <HeartFilledHover />
+                </IconBox>
+              )}
+            </ListGridItem>
+          );
+        })}
         <ListGridItem>
           {clickBtnState === "interest" && (
             <>
               <ImgBox>
                 <ImgIcon
-                  src={`./assets/images/icon-plus-grey-fill.png`}
+                  src={`${BASE_IMAGE_PATH}/icon-plus-grey-fill.png`}
                   alt="더하기 아이콘"
                 />
               </ImgBox>

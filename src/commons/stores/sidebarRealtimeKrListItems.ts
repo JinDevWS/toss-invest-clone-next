@@ -1,6 +1,15 @@
 import { v4 as uuidv4 } from "uuid";
 
-export const sidebarRealtimeKrListItems = [
+interface ISidebarRealtimeKrListItems {
+  id: string;
+  img: string;
+  krOrUs: string;
+  title: string;
+  priceWon: number;
+  upOrDownPercent: number;
+}
+
+export const sidebarRealtimeKrListItems: ISidebarRealtimeKrListItems[] = [
   {
     id: `${uuidv4()}`,
     img: "icn-ecopro.png",

@@ -3,11 +3,10 @@ import LayoutSidebarExpanded from "../sidebar-expanded";
 import LayoutSidebarCollapsed from "../sidebar-collapsed";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
-import { sidebarClickBtnState } from "@/src/commons/atom/sidebarClickBtnState.ts";
+import { sidebarClickBtnState } from "@/src/commons/atom/sidebarClickBtnState";
 
-const Wrapper = styled.div`
-  width: ${(props: string | boolean): string =>
-    props.clickBtnState ? "370px" : "56px"};
+const Wrapper = styled.div<{ clickBtnState: string | boolean }>`
+  width: ${(props): string => (props.clickBtnState ? "370px" : "56px")};
   height: 100dvh;
   display: flex;
   position: sticky;
@@ -22,7 +21,7 @@ export default function LayoutSidebar(): React.ReactElement {
   // 전역변수 사용(리코일 스테이트)
   const [clickBtnState, setClickBtnState] =
     useRecoilState(sidebarClickBtnState);
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState<string | boolean>(false);
 
   // state를 사용하여 click 스타일링 구현
   // 1. 클릭 시 진하게 활성화

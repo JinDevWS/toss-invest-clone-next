@@ -1,15 +1,14 @@
 import styled from "@emotion/styled";
-import SidebarH2DollarSwitch from "../commons/SidebarH2DollarSwitch.tsx";
-import SidebarHr from "../commons/SidebarHr.tsx";
-import SidebarNoItem from "../commons/SidebarNoItem.tsx";
-import SidebarSelect from "../commons/SidebarSelect.tsx";
+import SidebarH2DollarSwitch from "../commons/SidebarH2DollarSwitch";
+import SidebarHr from "../commons/SidebarHr";
+import SidebarNoItem from "../commons/SidebarNoItem";
+import SidebarSelect from "../commons/SidebarSelect";
 import {
   Section,
   Header,
   FilterWrapper,
 } from "@/styles/sidebar/SidebarExpandedSection.js";
-import { sidebarMyInvestOptionList } from "@/src/commons/stores/sidebarMyInvestOptionList.ts";
-import Link from "next/link.js";
+import { sidebarMyInvestOptionList } from "@/src/commons/stores/sidebarMyInvestOptionList";
 
 const MoneySwitch = styled.button`
   width: 100px;
@@ -26,7 +25,7 @@ const MoneySwitch = styled.button`
 `;
 
 const MoneyBtn = styled.span`
-  width: 50px;
+  width: 50%;
   height: 100%;
   border: 0;
   border-radius: 5px;
@@ -36,7 +35,9 @@ const MoneyBtn = styled.span`
   z-index: 1;
 `;
 
-const MoneyToggleBtn = styled.span`
+const MoneyToggleBtn = styled.span<{
+  isNow: boolean;
+}>`
   isolation: isolate;
   width: 54%;
   height: 100%;
@@ -45,12 +46,24 @@ const MoneyToggleBtn = styled.span`
   position: absolute;
   background-color: white;
   box-shadow: -1px 1px 3px #ccd1d5;
-  left: ${(props: boolean): string => (props.isNow ? "-2%" : "48%")};
+  left: ${(props): string => (props.isNow ? "-2%" : "48%")};
   transition: left 100ms linear;
   z-index: 0;
 `;
 
-export default function SidebarExpandedMyInvest(props): React.ReactElement {
+interface ISidebarExpandedMyInvestProps {
+  isDollar: boolean;
+  isNow: boolean;
+  dollarBtnHandleClick: (e: React.MouseEvent<HTMLSpanElement>) => void;
+  nowBtnHandleClick: (e: React.MouseEvent<HTMLSpanElement>) => void;
+}
+
+export default function SidebarExpandedMyInvest({
+  isDollar,
+  isNow,
+  dollarBtnHandleClick,
+  nowBtnHandleClick,
+}: ISidebarExpandedMyInvestProps): React.ReactElement {
   const h2Text = "내 투자";
   const noItemText = "보유 종목이 없어요";
   const selectMyInvBtnId = "selectMyInvBtn";
@@ -64,8 +77,8 @@ export default function SidebarExpandedMyInvest(props): React.ReactElement {
       <Header>
         <SidebarH2DollarSwitch
           h2Text={h2Text}
-          isDollar={props.isDollar}
-          dollarBtnHandleClick={props.dollarBtnHandleClick}
+          isDollar={isDollar}
+          dollarBtnHandleClick={dollarBtnHandleClick}
         />
         <SidebarHr />
         <FilterWrapper>
@@ -77,11 +90,11 @@ export default function SidebarExpandedMyInvest(props): React.ReactElement {
             selectBtnInitText={selectBtnInitText}
           />
           <MoneySwitch type="button">
-            <MoneyToggleBtn isNow={props.isNow}></MoneyToggleBtn>
-            <MoneyBtn id="now" onClick={props.nowBtnHandleClick}>
+            <MoneyToggleBtn isNow={isNow}></MoneyToggleBtn>
+            <MoneyBtn id="now" onClick={nowBtnHandleClick}>
               현재가
             </MoneyBtn>
-            <MoneyBtn id="evaluate" onClick={props.nowBtnHandleClick}>
+            <MoneyBtn id="evaluate" onClick={nowBtnHandleClick}>
               평가금
             </MoneyBtn>
           </MoneySwitch>

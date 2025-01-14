@@ -6,22 +6,19 @@ import {
   FireFilled,
 } from "@ant-design/icons";
 import { useRecoilValue } from "recoil";
-import { sidebarClickBtnState } from "@/src/commons/atom/sidebarClickBtnState.ts";
-import Link from "next/link";
+import { sidebarClickBtnState } from "@/src/commons/atom/sidebarClickBtnState";
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: normal;
   align-items: center;
   gap: 0px;
   visibility: visible;
   position: absolute;
   top: 0;
   right: 0;
-  padding: 6px 0 24px;
   width: 56px;
-  height: inherit;
+  height: 100%;
   overflow: auto;
   z-index: 1;
   background-color: #f6f7f9;
@@ -42,21 +39,27 @@ const IconBox = styled.div`
   margin-bottom: 20px;
 `;
 
-const IconButton = styled.a`
-  margin-bottom: ${(props: boolean): string =>
-    props.isHrMeet ? "15px" : "0px"};
+const IconButton = styled.a<{
+  isHrMeet: boolean;
+  active: string | boolean;
+  clickBtn: string | boolean;
+}>`
+  margin-bottom: ${(props): string => (props.isHrMeet ? "15px" : "0px")};
   text-align: center;
-  color: ${(props: string | boolean): string =>
+  color: ${(props): string =>
     props.active || props.clickBtn ? "#2c3646" : "#acb2bd"};
 `;
 
-const Icon = styled.div`
+const Icon = styled.div<{
+  active: string | boolean;
+  clickBtn: string | boolean;
+}>`
   width: 32px;
   border-radius: 9px;
   padding: 5px;
   font-size: 20px;
   margin-bottom: 4px;
-  background-color: ${(props: string | boolean): string =>
+  background-color: ${(props): string =>
     props.active || props.clickBtn ? "#DDE1E5" : "transparent"};
 `;
 
@@ -73,15 +76,24 @@ const Hr = styled.hr`
   background-color: #dde1e5;
 `;
 
-interface IbtnData {
+interface IBtnData {
   id: string;
   href: string;
   icon: JSX.Element;
   text: string;
 }
 
-export default function LayoutSidebarCollapsed(props): React.ReactElement {
-  const btnData = [
+interface ILayoutSidebarCollapsedProps {
+  active: string | boolean;
+  handleClick: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+  handleMouseOver: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+  handleMouseOut: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+}
+
+export default function LayoutSidebarCollapsed(
+  props: ILayoutSidebarCollapsedProps,
+): React.ReactElement {
+  const btnData: IBtnData[] = [
     { id: "myInvest", href: "myInvest", icon: <BankFilled />, text: "내 투자" },
     {
       id: "interest",
@@ -110,34 +122,28 @@ export default function LayoutSidebarCollapsed(props): React.ReactElement {
           1. 클릭 시 진하게 활성화
           2. 활성화된 버튼 한번 더 클릭 시 흐리게 비활성화
         */}
-        {btnData.map((el: IbtnData, index: number): React.ReactElement => {
+        {btnData.map((el, index): React.ReactElement => {
           return (
-            <IconBox key={btnData[index].id}>
+            <IconBox key={el.id}>
               <IconButton
-                href={`#${btnData[index].href}`}
-                id={btnData[index].id}
-                isHrMeet={index === 2 ? true : false}
-                active={
-                  props.active === btnData[index].id ? btnData[index].id : false
-                }
-                clickBtn={
-                  clickBtnState === btnData[index].id
-                    ? btnData[index].id
-                    : false
-                }
+                href={`#${el.href}`}
+                id={el.id}
+                isHrMeet={index === 2}
+                active={props.active === el.id}
+                clickBtn={clickBtnState === el.id}
                 onClick={props.handleClick}
                 onMouseOver={props.handleMouseOver}
                 onMouseOut={props.handleMouseOut}
               >
                 <Icon
-                  active={props.active === btnData[index].id}
-                  clickBtn={clickBtnState === btnData[index].id}
+                  active={props.active === el.id}
+                  clickBtn={clickBtnState === el.id}
                 >
-                  {btnData[index].icon}
+                  {el.icon}
                 </Icon>
-                <IconText>{btnData[index].text}</IconText>
+                <IconText>{el.text}</IconText>
               </IconButton>
-              <span>{index == 2 ? <Hr /> : ""}</span>
+              {index === 2 && <Hr />}
             </IconBox>
           );
         })}

@@ -1,9 +1,17 @@
-import SidebarH2DollarSwitch from "../commons/SidebarH2DollarSwitch.tsx";
-import SidebarHr from "../commons/SidebarHr.tsx";
+import SidebarH2DollarSwitch from "../commons/SidebarH2DollarSwitch";
+import SidebarHr from "../commons/SidebarHr";
 import { Section, Header } from "@/styles/sidebar/SidebarExpandedSection.js";
-import SidebarNoItem from "../commons/SidebarNoItem.tsx";
+import SidebarNoItem from "../commons/SidebarNoItem";
 
-export default function SidebarExpandedMyRecent(props): React.ReactElement {
+interface ISidebarExpandedMyRecent {
+  isDollar: boolean;
+  dollarBtnHandleClick: (e: React.MouseEvent<HTMLSpanElement>) => void;
+}
+
+export default function SidebarExpandedMyRecent({
+  isDollar,
+  dollarBtnHandleClick,
+}: ISidebarExpandedMyRecent): React.ReactElement {
   const h2Text = "최근 본 종목";
   const noItemText = "최근 본 종목이 없어요";
 
@@ -12,8 +20,8 @@ export default function SidebarExpandedMyRecent(props): React.ReactElement {
       <Header>
         <SidebarH2DollarSwitch
           h2Text={h2Text}
-          isDollar={props.isDollar}
-          dollarBtnHandleClick={props.dollarBtnHandleClick}
+          isDollar={isDollar}
+          dollarBtnHandleClick={dollarBtnHandleClick}
         />
         <SidebarHr />
       </Header>

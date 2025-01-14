@@ -1,10 +1,18 @@
-import SidebarH2DollarSwitch from "../commons/SidebarH2DollarSwitch.tsx";
-import SidebarHr from "../commons/SidebarHr.tsx";
+import SidebarH2DollarSwitch from "../commons/SidebarH2DollarSwitch";
+import SidebarHr from "../commons/SidebarHr";
 import { Section, Header } from "@/styles/sidebar/SidebarExpandedSection.js";
-import { sidebarInterestListItems } from "@/src/commons/stores/sidebarInterestListItems.ts";
-import SidebarGrid from "../commons/SidebarGrid.tsx";
+import { sidebarInterestListItems } from "@/src/commons/stores/sidebarInterestListItems";
+import SidebarGrid from "../commons/SidebarGrid";
 
-export default function SidebarExpandedMyInvest(props): React.ReactElement {
+interface ISidebarExpandedMyInvestProps {
+  isDollar: boolean;
+  dollarBtnHandleClick: (e: React.MouseEvent<HTMLSpanElement>) => void;
+}
+
+export default function SidebarExpandedMyInvest({
+  isDollar,
+  dollarBtnHandleClick,
+}: ISidebarExpandedMyInvestProps): React.ReactElement {
   const h2Text = "관심 종목";
   const itemList = sidebarInterestListItems;
 
@@ -13,12 +21,12 @@ export default function SidebarExpandedMyInvest(props): React.ReactElement {
       <Header>
         <SidebarH2DollarSwitch
           h2Text={h2Text}
-          isDollar={props.isDollar}
-          dollarBtnHandleClick={props.dollarBtnHandleClick}
+          isDollar={isDollar}
+          dollarBtnHandleClick={dollarBtnHandleClick}
         />
         <SidebarHr />
       </Header>
-      <SidebarGrid isDollar={props.isDollar} itemList={itemList} />
+      <SidebarGrid isDollar={isDollar} itemList={itemList} />
     </Section>
   );
 }

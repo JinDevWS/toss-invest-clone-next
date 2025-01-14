@@ -24,13 +24,19 @@ const NoItemText = styled.p`
   font-weight: bold;
 `;
 
-export default function SidebarNoItem(props): React.ReactElement {
+interface ISidebarNoItemProps {
+  noItemText: string;
+}
+
+export default function SidebarNoItem({
+  noItemText,
+}: ISidebarNoItemProps): React.ReactElement {
   return (
     <Article>
       <NoItemIcon>
         <CopyFilled />
       </NoItemIcon>
-      <NoItemText>{props.noItemText}</NoItemText>
+      <NoItemText>{noItemText}</NoItemText>
     </Article>
   );
 }

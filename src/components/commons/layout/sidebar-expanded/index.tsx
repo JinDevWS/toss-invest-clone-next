@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { useState } from "react";
 import { keyframes } from "@emotion/react";
 import { useRecoilValue } from "recoil";
-import { sidebarClickBtnState } from "@/src/commons/atom/sidebarClickBtnState.ts";
+import { sidebarClickBtnState } from "@/src/commons/atom/sidebarClickBtnState";
 import SidebarExpandedMyInvest from "../sidebar-expanded/myinvest";
 import SidebarExpandedInterest from "../sidebar-expanded/interest";
 import SidebarExpandedRecent from "../sidebar-expanded/recent";
@@ -32,7 +32,9 @@ const sidebarExpand = keyframes`
 }
 `;
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{
+  clickBtnState: string | boolean;
+}>`
   padding: 16px 0;
   width: 314px;
   min-width: 314px;
@@ -40,7 +42,7 @@ const Wrapper = styled.div`
   display: grid;
   grid-template-rows: minmax(10px, 1fr);
   grid-template-columns: minmax(10px, 1fr);
-  animation: ${(props: string | boolean): unknown =>
+  animation: ${(props) =>
       props.clickBtnState ? sidebarExpand : sidebarCollapse}
     0.1s linear;
   background-color: #f6f7f9;
@@ -53,16 +55,14 @@ export default function LayoutSidebarExpanded(): React.ReactElement {
   const [isDollar, setIsDollar] = useState(false);
   const [isNow, setIsNow] = useState(false);
 
-  const dollarBtnHandleClick = (
-    e: React.MouseEvent<HTMLButtonElement>,
-  ): void => {
+  const dollarBtnHandleClick = (e: React.MouseEvent<HTMLSpanElement>): void => {
     const currentTarget = e.currentTarget;
     setIsDollar((): boolean => {
       return currentTarget.id === "dollar" ? true : false;
     });
   };
 
-  const nowBtnHandleClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
+  const nowBtnHandleClick = (e: React.MouseEvent<HTMLSpanElement>): void => {
     const currentTarget = e.currentTarget;
     setIsNow((): boolean => {
       return currentTarget.id === "now" ? true : false;

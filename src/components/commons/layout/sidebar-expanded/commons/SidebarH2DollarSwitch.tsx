@@ -36,21 +36,31 @@ const DollarBtn = styled.span`
   z-index: 1;
 `;
 
-const DollarToggleBtn = styled.span`
+const DollarToggleBtn = styled.span<{
+  isDollar: boolean;
+}>`
   isolation: isolate;
   width: 23px;
-  height: 26px;
+  height: 24px;
   border-radius: 5px;
   transform: scale(0.85);
   position: absolute;
   background-color: white;
   box-shadow: -1px 1px 3px #ccd1d5;
-  left: ${(props) => (props.isDollar ? "0px" : "23px")};
+  left: ${(props): string => (props.isDollar ? "0px" : "23px")};
   transition: left 100ms linear;
   z-index: 0;
 `;
 
-export default function SidebarH2DollarSwitch(props): React.ReactElement {
+interface ISidebarH2DollarSwitchProps {
+  h2Text: string;
+  isDollar: boolean;
+  dollarBtnHandleClick: (e: React.MouseEvent<HTMLSpanElement>) => void;
+}
+
+export default function SidebarH2DollarSwitch(
+  props: ISidebarH2DollarSwitchProps,
+): React.ReactElement {
   return (
     <H2Wrapper>
       <H2>{props.h2Text}</H2>

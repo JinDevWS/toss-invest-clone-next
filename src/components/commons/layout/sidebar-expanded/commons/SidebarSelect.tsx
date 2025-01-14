@@ -1,13 +1,18 @@
+import { ISidebarMyInvestOptionList } from "@/src/commons/stores/sidebarMyInvestOptionList";
+import { ISidebarRealTimeFilterOptionList } from "@/src/commons/stores/sidebarRealTimeFilterOptionList";
+import { ISidebarRealTimeFilterTimeOptionList } from "@/src/commons/stores/sidebarRealTimeFilterTimeOptionList";
 import { DownOutlined, CheckOutlined } from "@ant-design/icons";
 import styled from "@emotion/styled";
 import { useState, useRef, useEffect } from "react";
 
-const SelectWrapper = styled.div`
-  min-width: ${(props: string): string =>
+const SelectWrapper = styled.div<{
+  id: string;
+}>`
+  min-width: ${(props): string =>
     props.id === "selectTimeBtn" ? "100px" : "160px"};
   height: 26px;
   display: flex;
-  justify-content: ${(props: string): string =>
+  justify-content: ${(props): string =>
     props.id === "selectTimeBtn" ? "flex-end" : "flex-start"};
   align-items: center;
   z-index: 10;
@@ -60,19 +65,36 @@ const SelectOptionIcon = styled(SelectOption)`
   padding: 5px 0 5px 5px;
 `;
 
-export default function SidebarSelect(props): React.ReactElement {
-  const [isOpen, setIsOpen] = useState(false); // 메뉴 열림/닫힘 상태
-  const [selected, setSelected] = useState(props.selectedInitValue);
-  const [selectBtnText, setSelectBtnText] = useState(props.selectBtnInitText);
+interface ISidebarSelectProps {
+  selectedInitValue: string;
+  selectBtnInitText: string;
+  selectBtnId: string;
+  selectMenuId: string;
+  optionList:
+    | ISidebarMyInvestOptionList[]
+    | (
+        | ISidebarRealTimeFilterOptionList[]
+        | ISidebarRealTimeFilterTimeOptionList[]
+      );
+}
+
+export default function SidebarSelect(
+  props: ISidebarSelectProps,
+): React.ReactElement {
+  const [isOpen, setIsOpen] = useState<boolean>(false); // 메뉴 열림/닫힘 상태
+  const [selected, setSelected] = useState<string>(props.selectedInitValue);
+  const [selectBtnText, setSelectBtnText] = useState<string>(
+    props.selectBtnInitText,
+  );
   const menuRef = useRef<HTMLDivElement>(null); // 메뉴 영역 참조
 
-  const toggleMenu = () => setIsOpen((prev) => !prev); // 메뉴 열림/닫힘 토글
-  const closeMenu = () => setIsOpen(false); // 메뉴 닫기
+  const toggleMenu = (): void => setIsOpen((prev) => !prev); // 메뉴 열림/닫힘 토글
+  const closeMenu = (): void => setIsOpen(false); // 메뉴 닫기
 
   const handleOptionClick = (e: React.MouseEvent<HTMLSpanElement>): void => {
     const { id, textContent } = e.currentTarget;
-    setSelected(id || selectedInitValue); // 선택된 값 업데이트
-    setSelectBtnText(textContent || selectBtnInitText); // 버튼 텍스트 업데이트
+    setSelected(id || props.selectedInitValue); // 선택된 값 업데이트
+    setSelectBtnText(textContent || props.selectBtnInitText); // 버튼 텍스트 업데이트
     closeMenu(); // 메뉴 닫기
   };
 
@@ -94,7 +116,7 @@ export default function SidebarSelect(props): React.ReactElement {
     // 클린업 함수
     // 클린업 함수는 useEffect가 다시 실행되거나 컴포넌트가 언마운트될 때 호출됨
     // 이벤트 리스너를 제거하거나 리소스를 정리
-    return () => {
+    return (): void => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isOpen]); // `isOpen` 상태가 바뀔 때마다 실행
@@ -113,25 +135,23 @@ export default function SidebarSelect(props): React.ReactElement {
       </StyledSelectButton>
       {isOpen && (
         <StyledSelectMenu id={props.selectMenuId}>
-          {props.optionList.map(
-            (el: string, index: number): React.ReactElement => {
-              return (
-                <SelectOption
-                  key={index}
-                  id={el.value}
-                  onClick={handleOptionClick}
-                  className={selected === el.value ? "clicked" : ""}
-                >
-                  {el.label}
-                  {selected === el.value && (
-                    <SelectOptionIcon>
-                      <CheckOutlined />
-                    </SelectOptionIcon>
-                  )}
-                </SelectOption>
-              );
-            },
-          )}
+          {props.optionList.map((el, index): React.ReactElement => {
+            return (
+              <SelectOption
+                key={index}
+                id={el.value}
+                onClick={handleOptionClick}
+                className={selected === el.value ? "clicked" : ""}
+              >
+                {el.label}
+                {selected === el.value && (
+                  <SelectOptionIcon>
+                    <CheckOutlined />
+                  </SelectOptionIcon>
+                )}
+              </SelectOption>
+            );
+          })}
         </StyledSelectMenu>
       )}
     </SelectWrapper>

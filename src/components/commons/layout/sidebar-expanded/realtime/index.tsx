@@ -1,15 +1,14 @@
 import styled from "@emotion/styled";
-import SidebarH2DollarSwitch from "../commons/SidebarH2DollarSwitch.tsx";
-import SidebarHr from "../commons/SidebarHr.tsx";
+import SidebarH2DollarSwitch from "../commons/SidebarH2DollarSwitch";
+import SidebarHr from "../commons/SidebarHr";
 import { Section, Header } from "@/styles/sidebar/SidebarExpandedSection.js";
-import { sidebarInterestListItems } from "@/src/commons/stores/sidebarInterestListItems.ts";
-import { sidebarRealtimeKrListItems } from "@/src/commons/stores/sidebarRealtimeKrListItems.ts";
-import SidebarGrid from "../commons/SidebarGrid.tsx";
-import SidebarSelect from "../commons/SidebarSelect.tsx";
+import { sidebarInterestListItems } from "@/src/commons/stores/sidebarInterestListItems";
+import { sidebarRealtimeKrListItems } from "@/src/commons/stores/sidebarRealtimeKrListItems";
+import SidebarGrid from "../commons/SidebarGrid";
+import SidebarSelect from "../commons/SidebarSelect";
 import { useState } from "react";
-import { sidebarRealTimeFilterOptionList } from "@/src/commons/stores/sidebarRealTimeFilterOptionList.ts";
-import { sidebarRealTimeFilterTimeOptionList } from "@/src/commons/stores/sidebarRealTimeFilterTimeOptionList.ts";
-import Link from "next/link.js";
+import { sidebarRealTimeFilterOptionList } from "@/src/commons/stores/sidebarRealTimeFilterOptionList";
+import { sidebarRealTimeFilterTimeOptionList } from "@/src/commons/stores/sidebarRealTimeFilterTimeOptionList";
 
 const SidebarDomesticFilterSwitch = styled.button`
   width: 150px;
@@ -24,7 +23,9 @@ const SidebarDomesticFilterSwitch = styled.button`
   cursor: pointer;
 `;
 
-const FilterToggleBtn = styled.span`
+const FilterToggleBtn = styled.span<{
+  domesticOrForeign: string;
+}>`
   isolation: isolate;
   width: 50px;
   height: 30px;
@@ -41,7 +42,9 @@ const FilterToggleBtn = styled.span`
   z-index: 0;
 `;
 
-const DomesticOrForeignBtn = styled.span`
+const DomesticOrForeignBtn = styled.span<{
+  domesticOrForeign: string;
+}>`
   width: 50%;
   height: 100%;
   border: 0;
@@ -59,7 +62,15 @@ const SelectBox = styled.div`
   margin: 12px 0 5px 0;
 `;
 
-export default function SidebarExpandedRealtime(props): React.ReactElement {
+interface ISidebarExpandedRealtimeProps {
+  isDollar: boolean;
+  dollarBtnHandleClick: (e: React.MouseEvent<HTMLSpanElement>) => void;
+}
+
+export default function SidebarExpandedRealtime({
+  isDollar,
+  dollarBtnHandleClick,
+}: ISidebarExpandedRealtimeProps): React.ReactElement {
   const h2Text = "실시간 차트";
   const [domesticOrForeign, setDomesticOrForeign] =
     useState("sidebarFilterAll");
@@ -76,7 +87,9 @@ export default function SidebarExpandedRealtime(props): React.ReactElement {
   const selectedTimeInitValue = "realtime";
   const selectTimeBtnInitText = "실시간";
 
-  const DomesticOrForeignBtnHandleClick = (e) => {
+  const DomesticOrForeignBtnHandleClick = (
+    e: React.MouseEvent<HTMLSpanElement>,
+  ) => {
     e.preventDefault();
     const currentTarget = e.currentTarget;
     setDomesticOrForeign(currentTarget.id);
@@ -87,8 +100,8 @@ export default function SidebarExpandedRealtime(props): React.ReactElement {
       <Header>
         <SidebarH2DollarSwitch
           h2Text={h2Text}
-          isDollar={props.isDollar}
-          dollarBtnHandleClick={props.dollarBtnHandleClick}
+          isDollar={isDollar}
+          dollarBtnHandleClick={dollarBtnHandleClick}
         />
         <SidebarHr />
       </Header>
@@ -134,7 +147,7 @@ export default function SidebarExpandedRealtime(props): React.ReactElement {
           selectBtnInitText={selectTimeBtnInitText}
         />
       </SelectBox>
-      <SidebarGrid isDollar={props.isDollar} itemList={itemList} />
+      <SidebarGrid isDollar={isDollar} itemList={itemList} />
     </Section>
   );
 }

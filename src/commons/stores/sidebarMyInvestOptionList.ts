@@ -1,4 +1,9 @@
-export const sidebarMyInvestOptionList = [
+export interface ISidebarMyInvestOptionList {
+  value: string;
+  label: string;
+}
+
+export const sidebarMyInvestOptionList: ISidebarMyInvestOptionList[] = [
   { value: "ganada", label: "가나다 순" },
   { value: "totalAsc", label: "총 수익률 낮은 순" },
   { value: "totalDesc", label: "총 수익률 높은 순" },

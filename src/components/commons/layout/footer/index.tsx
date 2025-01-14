@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import Link from "next/link";
 
-const Wrapper = styled.div`
+const Wrapper = styled.footer`
   width: 100%;
   height: 147px;
   display: flex;
@@ -14,6 +14,9 @@ const Wrapper = styled.div`
 const Nav = styled.nav`
   color: #707a88;
   margin-bottom: 20px;
+  overflow: clip;
+  white-space: nowrap;
+  text-overflow: clip;
 `;
 
 const NavBtn = styled.a`
