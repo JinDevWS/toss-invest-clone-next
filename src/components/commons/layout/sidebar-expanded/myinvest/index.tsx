@@ -9,8 +9,9 @@ import {
   FilterWrapper,
 } from "@/styles/sidebar/SidebarExpandedSection.js";
 import { sidebarMyInvestOptionList } from "@/src/commons/stores/sidebarMyInvestOptionList.ts";
+import Link from "next/link.js";
 
-const MoneySwitch = styled.div`
+const MoneySwitch = styled.button`
   width: 100px;
   height: 26px;
   font-size: 14px;
@@ -21,9 +22,10 @@ const MoneySwitch = styled.div`
   display: flex;
   align-items: center;
   position: relative;
+  cursor: pointer;
 `;
 
-const MoneyBtn = styled.a`
+const MoneyBtn = styled.span`
   width: 50px;
   height: 100%;
   border: 0;
@@ -74,12 +76,12 @@ export default function SidebarExpandedMyInvest(props): React.ReactElement {
             selectedInitValue={selectedInitValue}
             selectBtnInitText={selectBtnInitText}
           />
-          <MoneySwitch>
+          <MoneySwitch type="button">
             <MoneyToggleBtn isNow={props.isNow}></MoneyToggleBtn>
-            <MoneyBtn href="#" id="now" onClick={props.nowBtnHandleClick}>
+            <MoneyBtn id="now" onClick={props.nowBtnHandleClick}>
               현재가
             </MoneyBtn>
-            <MoneyBtn href="#" id="evaluate" onClick={props.nowBtnHandleClick}>
+            <MoneyBtn id="evaluate" onClick={props.nowBtnHandleClick}>
               평가금
             </MoneyBtn>
           </MoneySwitch>

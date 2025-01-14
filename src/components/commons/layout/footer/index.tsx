@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import Link from "next/link";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -52,21 +53,37 @@ export default function LayoutFooter() {
   return (
     <Wrapper>
       <Nav>
-        <NavBtn className="personalInfo">개인정보 처리방침</NavBtn>
+        <Link href={"/"} passHref>
+          <NavBtn className="personalInfo">개인정보 처리방침</NavBtn>
+        </Link>
         <NavSpan />
-        <NavBtn href="#">고객센터 1599-7987</NavBtn>
+        <Link href={"/"} passHref>
+          <NavBtn>고객센터 1599-7987</NavBtn>
+        </Link>
         <NavSpan />
-        <NavBtn href="#">공지사항</NavBtn>
+        <Link href={"/"} passHref>
+          <NavBtn>공지사항</NavBtn>
+        </Link>
         <NavSpan />
-        <NavBtn href="#">자주 묻는 질문</NavBtn>
+        <Link href={"/"} passHref>
+          <NavBtn>자주 묻는 질문</NavBtn>
+        </Link>
         <NavSpan />
-        <NavBtn href="#">투자 유의사항</NavBtn>
+        <Link href={"/"} passHref>
+          <NavBtn>투자 유의사항</NavBtn>
+        </Link>
         <NavSpan />
-        <NavBtn href="#">이용자권리 및 유의사항</NavBtn>
+        <Link href={"/"} passHref>
+          <NavBtn>이용자권리 및 유의사항</NavBtn>
+        </Link>
         <NavSpan />
-        <NavBtn href="#">신용정보 활용체제</NavBtn>
+        <Link href={"/"} passHref>
+          <NavBtn>신용정보 활용체제</NavBtn>
+        </Link>
         <NavSpan />
-        <NavBtn href="#">토스증권(주)</NavBtn>
+        <Link href={"/"} passHref>
+          <NavBtn>토스증권(주)</NavBtn>
+        </Link>
       </Nav>
       <InfoBox>
         <InfoText>사업자 등록번호 : 519-87-01431</InfoText>

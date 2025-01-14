@@ -7,6 +7,7 @@ import {
 } from "@ant-design/icons";
 import { useRecoilValue } from "recoil";
 import { sidebarClickBtnState } from "@/src/commons/atom/sidebarClickBtnState.ts";
+import Link from "next/link";
 
 const Wrapper = styled.div`
   display: flex;
@@ -41,7 +42,7 @@ const IconBox = styled.div`
   margin-bottom: 20px;
 `;
 
-const IconAbutton = styled.a`
+const IconButton = styled.a`
   margin-bottom: ${(props: boolean): string =>
     props.isHrMeet ? "15px" : "0px"};
   text-align: center;
@@ -75,7 +76,7 @@ const Hr = styled.hr`
 interface IbtnData {
   id: string;
   href: string;
-  icon: HtmlElement;
+  icon: JSX.Element;
   text: string;
 }
 
@@ -112,7 +113,7 @@ export default function LayoutSidebarCollapsed(props): React.ReactElement {
         {btnData.map((el: IbtnData, index: number): React.ReactElement => {
           return (
             <IconBox key={btnData[index].id}>
-              <IconAbutton
+              <IconButton
                 href={`#${btnData[index].href}`}
                 id={btnData[index].id}
                 isHrMeet={index === 2 ? true : false}
@@ -135,7 +136,7 @@ export default function LayoutSidebarCollapsed(props): React.ReactElement {
                   {btnData[index].icon}
                 </Icon>
                 <IconText>{btnData[index].text}</IconText>
-              </IconAbutton>
+              </IconButton>
               <span>{index == 2 ? <Hr /> : ""}</span>
             </IconBox>
           );

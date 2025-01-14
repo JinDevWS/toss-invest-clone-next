@@ -8,7 +8,7 @@ import {
   ContentsWrapper,
 } from "@/styles/layout/Layout.js";
 
-const HIDDEN_HEADERS = [
+const HIDDEN_HEADERS: string[] = [
   //   "/section13/13-01-library-icon",
   //   "/section13/13-02-library-star",
 ];

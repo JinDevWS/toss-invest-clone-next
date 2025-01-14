@@ -9,16 +9,19 @@ import SidebarSelect from "../commons/SidebarSelect.tsx";
 import { useState } from "react";
 import { sidebarRealTimeFilterOptionList } from "@/src/commons/stores/sidebarRealTimeFilterOptionList.ts";
 import { sidebarRealTimeFilterTimeOptionList } from "@/src/commons/stores/sidebarRealTimeFilterTimeOptionList.ts";
+import Link from "next/link.js";
 
-const SidebarDomesticFilterSwitch = styled.div`
+const SidebarDomesticFilterSwitch = styled.button`
   width: 150px;
   height: 30px;
   font-size: 14px;
+  background-color: transparent;
   color: #040e1c;
   border: 0;
   display: flex;
   align-items: center;
   position: relative;
+  cursor: pointer;
 `;
 
 const FilterToggleBtn = styled.span`
@@ -38,7 +41,7 @@ const FilterToggleBtn = styled.span`
   z-index: 0;
 `;
 
-const DomesticOrForeignBtn = styled.a`
+const DomesticOrForeignBtn = styled.span`
   width: 50%;
   height: 100%;
   border: 0;
@@ -89,12 +92,11 @@ export default function SidebarExpandedRealtime(props): React.ReactElement {
         />
         <SidebarHr />
       </Header>
-      <SidebarDomesticFilterSwitch>
+      <SidebarDomesticFilterSwitch type="button">
         <FilterToggleBtn
           domesticOrForeign={domesticOrForeign}
         ></FilterToggleBtn>
         <DomesticOrForeignBtn
-          href="#"
           id="sidebarFilterAll"
           domesticOrForeign={domesticOrForeign}
           onClick={DomesticOrForeignBtnHandleClick}
@@ -102,7 +104,6 @@ export default function SidebarExpandedRealtime(props): React.ReactElement {
           전체
         </DomesticOrForeignBtn>
         <DomesticOrForeignBtn
-          href="#"
           id="sidebarFilterDomestic"
           domesticOrForeign={domesticOrForeign}
           onClick={DomesticOrForeignBtnHandleClick}
@@ -110,7 +111,6 @@ export default function SidebarExpandedRealtime(props): React.ReactElement {
           국내
         </DomesticOrForeignBtn>
         <DomesticOrForeignBtn
-          href="#"
           id="sidebarFilterForeign"
           domesticOrForeign={domesticOrForeign}
           onClick={DomesticOrForeignBtnHandleClick}

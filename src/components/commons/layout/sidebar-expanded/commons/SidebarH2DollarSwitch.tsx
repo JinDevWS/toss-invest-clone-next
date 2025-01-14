@@ -11,7 +11,7 @@ const H2 = styled.h2`
   color: #333d4b;
 `;
 
-const DollarSwitch = styled.div`
+const DollarSwitch = styled.button`
   width: 46px;
   height: 26px;
   font-size: 12px;
@@ -22,9 +22,10 @@ const DollarSwitch = styled.div`
   display: flex;
   align-items: center;
   position: relative;
+  cursor: pointer;
 `;
 
-const DollarBtn = styled.a`
+const DollarBtn = styled.span`
   width: 50%;
   height: 100%;
   border: 0;
@@ -53,12 +54,12 @@ export default function SidebarH2DollarSwitch(props): React.ReactElement {
   return (
     <H2Wrapper>
       <H2>{props.h2Text}</H2>
-      <DollarSwitch>
+      <DollarSwitch type="button">
         <DollarToggleBtn isDollar={props.isDollar}></DollarToggleBtn>
-        <DollarBtn href="#" id="dollar" onClick={props.dollarBtnHandleClick}>
+        <DollarBtn id="dollar" onClick={props.dollarBtnHandleClick}>
           $
         </DollarBtn>
-        <DollarBtn href="#" id="won" onClick={props.dollarBtnHandleClick}>
+        <DollarBtn id="won" onClick={props.dollarBtnHandleClick}>
           원
         </DollarBtn>
       </DollarSwitch>

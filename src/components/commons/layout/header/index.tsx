@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { SearchOutlined } from "@ant-design/icons";
+import Link from "next/link";
 
 const HeaderWrapper = styled.div`
   width: 100%;
@@ -55,6 +56,7 @@ const SearchBtn = styled.button`
   border: 0;
   border-radius: 20px;
   margin-left: 10px;
+  cursor: pointer;
 `;
 
 const SlashBox = styled.div`
@@ -74,27 +76,38 @@ const LoginBtn = styled.button`
   color: white;
   background-color: #2371eb;
   font-weight: bold;
+  cursor: pointer;
 `;
 
 export default function LayoutHeader() {
   return (
     <HeaderWrapper>
       <H1>
-        <LogoBtn href="#">
-          <Logo src="./assets/images/logo_black.png" alt="토스증권" />
-        </LogoBtn>
+        <Link href={"/"} passHref>
+          <LogoBtn>
+            <Logo src="./assets/images/logo_black.png" alt="토스증권" />
+          </LogoBtn>
+        </Link>
       </H1>
       <Nav>
-        <NavBtn href="#">홈</NavBtn>
-        <NavBtn href="#">뉴스</NavBtn>
-        <NavBtn href="#">주식 골라보기</NavBtn>
-        <NavBtn href="#">내 계좌</NavBtn>
+        <Link href={"/home"} passHref>
+          <NavBtn>홈</NavBtn>
+        </Link>
+        <Link href={"/"} passHref>
+          <NavBtn>뉴스</NavBtn>
+        </Link>
+        <Link href={"/"} passHref>
+          <NavBtn>주식 골라보기</NavBtn>
+        </Link>
+        <Link href={"/"} passHref>
+          <NavBtn>내 계좌</NavBtn>
+        </Link>
         <SearchBtn type="button">
           <SearchOutlined />
           <SlashBox>/</SlashBox> 를 눌러 검색하세요
         </SearchBtn>
       </Nav>
-      <LoginBtn>로그인</LoginBtn>
+      <LoginBtn type="button">로그인</LoginBtn>
     </HeaderWrapper>
   );
 }

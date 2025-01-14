@@ -1,6 +1,15 @@
 import Head from "next/head";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export default function Home() {
+  const router = useRouter();
+
+  // 브라우저단에서만 라우터 작동하게 함.
+  useEffect(() => {
+    router.push("./home");
+  }, []);
+
   return (
     <>
       <Head>
