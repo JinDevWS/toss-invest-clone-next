@@ -98,7 +98,7 @@ export default function SidebarSelect(
     closeMenu(); // 메뉴 닫기
   };
 
-  useEffect(() => {
+  useEffect((): (() => void) => {
     const handleClickOutside = (event: MouseEvent): void => {
       // menuRef.current가 초기에 null인지 확인하고, menuRef.current가 참조하는 DOM 내부에 클릭된 요소가 없다면 true를 반환
       // 즉 메뉴 외부를 클릭했는지를 파악

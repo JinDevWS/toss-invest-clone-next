@@ -11,6 +11,7 @@ const HeaderWrapper = styled.div`
   display: flex;
   align-items: center;
   padding: 0 36px 0 20px;
+  background-color: white;
 `;
 
 const H1 = styled.h1`
