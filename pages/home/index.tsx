@@ -1,5 +1,6 @@
 import DomesticForeignFilter from "@/src/components/units/home/domestic-foreign-filter";
 import FloatingFilter from "@/src/components/units/home/floating-filter";
+import GraphGrid from "@/src/components/units/home/graph-grid";
 import { CalendarFilled } from "@ant-design/icons";
 import styled from "@emotion/styled";
 
@@ -48,6 +49,7 @@ export default function HomePage() {
           증시 캘린더
         </CalendarBtn>
       </FilterCalendarWrapper>
+      <GraphGrid />
     </HomeWrapper>
   );
 }
