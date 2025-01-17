@@ -9,6 +9,7 @@ const FloatRoot = styled.div`
   display: flex;
   justify-content: center;
   position: sticky;
+  z-index: 2;
   top: 72px;
 `;
 
