@@ -4,6 +4,7 @@ import GraphGridStockIndex from "../graph-grid-stock-index";
 import GraphGridBond from "../graph-grid-bond";
 import CarouselBtn from "@/public/assets/images/svgs/carousel-btn.svg";
 import GraphGridMaterials from "../graph-grid-materials";
+import { keyframes } from "@emotion/react";
 
 const GraphGridSection = styled.section`
   width: 100%;
@@ -67,6 +68,35 @@ const FilterBtn = styled.button<{
   padding: 0 15px;
 `;
 
+const infiniteScrollFirst = keyframes`
+	0% { 
+    transform: translateY(18px); 
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(0px); 
+    opacity: 1;
+  }
+	100% { 
+    transform: translateY(calc(-18px));
+    opacity: 0;
+  }
+`;
+const infiniteScrollSecond = keyframes`
+	0% { 
+    transform: translateY(calc(18px * 2)); 
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(-18px); 
+    opacity: 1;
+  }
+	100% { 
+    transform: translateY(calc(-18px * 2));
+    opacity: 0;
+  }
+`;
+
 const DollarIndexCarousel = styled.div`
   display: flex;
   flex-direction: column;
@@ -83,6 +113,11 @@ const DollarIndexBtn = styled.button`
   display: flex;
   justify-content: flex-start;
   cursor: pointer;
+  animation: ${infiniteScrollFirst} 3s infinite;
+`;
+
+const DollarRateBtn = styled(DollarIndexBtn)`
+  animation: ${infiniteScrollSecond} 3s infinite 1.25s;
 `;
 
 const IndexText = styled.span`
@@ -161,21 +196,9 @@ const GraphGridCarousel = styled.div`
   position: relative;
 `;
 
-interface IDollarIndexItem {
-  id: string;
-  text: string;
-  dollar: number;
-  rate: number;
-}
-
 export default function GraphGrid(): React.ReactElement {
   const [activeFilter, setActiveFilter] = useState<string>("stockIndexFilter");
   const [scrollRight, setScrollRight] = useState<number>(56);
-
-  const dollarIndexItems: IDollarIndexItem[] = [
-    { id: "dollarIndex", text: "달러 인덱스", dollar: 109.08, rate: 0.0 },
-    { id: "dollarRate", text: "달러 환율", dollar: 1456.9, rate: -0.22 },
-  ];
 
   const leftBtnRef = useRef<HTMLDivElement>(null);
   const leftGradientRef = useRef<HTMLDivElement>(null);
@@ -192,6 +215,7 @@ export default function GraphGrid(): React.ReactElement {
   };
 
   const gridCarouselScroll = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
     const currentTarget = e.currentTarget;
     if (leftBtnRef.current && leftGradientRef.current) {
       if (currentTarget.scrollLeft === 0) {
@@ -238,15 +262,16 @@ export default function GraphGrid(): React.ReactElement {
           )}
         </Filter>
         <DollarIndexCarousel>
-          {dollarIndexItems.map(
-            (el): React.ReactElement => (
-              <DollarIndexBtn type="button" key={el.id}>
-                <IndexText>{el.text}</IndexText>
-                <IndexDollar>{el.dollar.toLocaleString("kr-KR")}</IndexDollar>
-                <IndexRate rate={el.rate}>{el.rate.toFixed(2)}%</IndexRate>
-              </DollarIndexBtn>
-            ),
-          )}
+          <DollarIndexBtn type="button">
+            <IndexText>달러 인덱스</IndexText>
+            <IndexDollar>109.08</IndexDollar>
+            <IndexRate rate={0.0}>0.0%</IndexRate>
+          </DollarIndexBtn>
+          <DollarRateBtn type="button">
+            <IndexText>달러 환율</IndexText>
+            <IndexDollar>{(1456.9).toLocaleString("kr-KR")}</IndexDollar>
+            <IndexRate rate={-0.22}>-0.22%</IndexRate>
+          </DollarRateBtn>
         </DollarIndexCarousel>
       </GraphGridHeader>
       <WhiteSpace>
