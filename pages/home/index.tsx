@@ -1,6 +1,7 @@
 import DomesticForeignFilter from "@/src/components/units/home/domestic-foreign-filter";
 import FloatingFilter from "@/src/components/units/home/floating-filter";
 import GraphGrid from "@/src/components/units/home/graph-grid";
+import News from "@/src/components/units/home/news";
 import { CalendarFilled } from "@ant-design/icons";
 import styled from "@emotion/styled";
 
@@ -50,6 +51,7 @@ export default function HomePage() {
         </CalendarBtn>
       </FilterCalendarWrapper>
       <GraphGrid />
+      <News />
     </HomeWrapper>
   );
 }

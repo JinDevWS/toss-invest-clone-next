@@ -17,7 +17,7 @@ const FloatWrapper = styled.div`
   border: 0;
   border-radius: 25px;
   background-color: white;
-  box-shadow: 0px 0px 10px 4px #f0f1f2;
+  box-shadow: rgba(0, 27, 55, 0.1) 0px 2px 30px 0px;
   display: grid;
   grid-template-columns: 80px max-content max-content;
   align-items: center;

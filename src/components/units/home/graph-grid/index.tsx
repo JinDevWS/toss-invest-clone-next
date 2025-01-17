@@ -8,7 +8,7 @@ import { keyframes } from "@emotion/react";
 
 const GraphGridSection = styled.section`
   width: 100%;
-  margin: 65px 0;
+  margin: 65px 0 50px 0;
   position: relative;
 `;
 
