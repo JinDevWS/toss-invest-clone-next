@@ -1,5 +1,3 @@
-import { v4 as uuidv4 } from "uuid";
-
 export interface ISidebarInterestListItems {
   id: string;
   img: string;
@@ -11,7 +9,7 @@ export interface ISidebarInterestListItems {
 
 export const sidebarInterestListItems: ISidebarInterestListItems[] = [
   {
-    id: `${uuidv4()}`,
+    id: `alux`,
     img: "icn-alux.png",
     krOrUs: "us",
     title: "알럭스",
@@ -19,7 +17,7 @@ export const sidebarInterestListItems: ISidebarInterestListItems[] = [
     upOrDownPercent: 50,
   },
   {
-    id: `${uuidv4()}`,
+    id: `apple`,
     img: "icn-apple.png",
     krOrUs: "us",
     title: "애플",
@@ -27,7 +25,7 @@ export const sidebarInterestListItems: ISidebarInterestListItems[] = [
     upOrDownPercent: 17,
   },
   {
-    id: `${uuidv4()}`,
+    id: `aton`,
     img: "icn-aton.png",
     krOrUs: "us",
     title: "에이톤",
@@ -35,7 +33,7 @@ export const sidebarInterestListItems: ISidebarInterestListItems[] = [
     upOrDownPercent: 12,
   },
   {
-    id: `${uuidv4()}`,
+    id: `azn`,
     img: "icn-azn.png",
     krOrUs: "us",
     title: "에이젠",
@@ -43,7 +41,7 @@ export const sidebarInterestListItems: ISidebarInterestListItems[] = [
     upOrDownPercent: 5,
   },
   {
-    id: `${uuidv4()}`,
+    id: `ben`,
     img: "icn-ben.png",
     krOrUs: "us",
     title: "벤",
@@ -51,7 +49,7 @@ export const sidebarInterestListItems: ISidebarInterestListItems[] = [
     upOrDownPercent: 9,
   },
   {
-    id: `${uuidv4()}`,
+    id: `bp`,
     img: "icn-bp.png",
     krOrUs: "us",
     title: "비피",
@@ -59,7 +57,7 @@ export const sidebarInterestListItems: ISidebarInterestListItems[] = [
     upOrDownPercent: 10,
   },
   {
-    id: `${uuidv4()}`,
+    id: `byon`,
     img: "icn-byon.png",
     krOrUs: "us",
     title: "비욘",
@@ -67,7 +65,7 @@ export const sidebarInterestListItems: ISidebarInterestListItems[] = [
     upOrDownPercent: 8,
   },
   {
-    id: `${uuidv4()}`,
+    id: `caliber`,
     img: "icn-caliber.png",
     krOrUs: "us",
     title: "칼리버",
@@ -75,7 +73,7 @@ export const sidebarInterestListItems: ISidebarInterestListItems[] = [
     upOrDownPercent: 11,
   },
   {
-    id: `${uuidv4()}`,
+    id: `cat`,
     img: "icn-cat.png",
     krOrUs: "us",
     title: "캣",
@@ -83,7 +81,7 @@ export const sidebarInterestListItems: ISidebarInterestListItems[] = [
     upOrDownPercent: 3,
   },
   {
-    id: `${uuidv4()}`,
+    id: `clearone`,
     img: "icn-clearone.png",
     krOrUs: "us",
     title: "클리어원",

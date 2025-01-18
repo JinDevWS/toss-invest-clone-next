@@ -1,5 +1,3 @@
-import { v4 as uuidv4 } from "uuid";
-
 export interface ISidebarRealtimeKrListItems {
   id: string;
   img: string;
@@ -11,7 +9,7 @@ export interface ISidebarRealtimeKrListItems {
 
 export const sidebarRealtimeKrListItems: ISidebarRealtimeKrListItems[] = [
   {
-    id: `${uuidv4()}`,
+    id: `ecopro`,
     img: "icn-ecopro.png",
     krOrUs: "kr",
     title: "에코프로",
@@ -19,7 +17,7 @@ export const sidebarRealtimeKrListItems: ISidebarRealtimeKrListItems[] = [
     upOrDownPercent: 50,
   },
   {
-    id: `${uuidv4()}`,
+    id: `hanhwa`,
     img: "icn-hanhwa.png",
     krOrUs: "kr",
     title: "한화",
@@ -27,7 +25,7 @@ export const sidebarRealtimeKrListItems: ISidebarRealtimeKrListItems[] = [
     upOrDownPercent: 17,
   },
   {
-    id: `${uuidv4()}`,
+    id: `hanmi`,
     img: "icn-hanmi.png",
     krOrUs: "kr",
     title: "한미",
@@ -35,7 +33,7 @@ export const sidebarRealtimeKrListItems: ISidebarRealtimeKrListItems[] = [
     upOrDownPercent: 12,
   },
   {
-    id: `${uuidv4()}`,
+    id: `hyundai`,
     img: "icn-hyundai.png",
     krOrUs: "kr",
     title: "현대",
@@ -43,7 +41,7 @@ export const sidebarRealtimeKrListItems: ISidebarRealtimeKrListItems[] = [
     upOrDownPercent: 5,
   },
   {
-    id: `${uuidv4()}`,
+    id: `inbus`,
     img: "icn-inbus.png",
     krOrUs: "kr",
     title: "인버스",
@@ -51,7 +49,7 @@ export const sidebarRealtimeKrListItems: ISidebarRealtimeKrListItems[] = [
     upOrDownPercent: 9,
   },
   {
-    id: `${uuidv4()}`,
+    id: `ionq`,
     img: "icn-ionq.png",
     krOrUs: "kr",
     title: "아이온큐",
@@ -59,7 +57,7 @@ export const sidebarRealtimeKrListItems: ISidebarRealtimeKrListItems[] = [
     upOrDownPercent: 10,
   },
   {
-    id: `${uuidv4()}`,
+    id: `kb`,
     img: "icn-kb.png",
     krOrUs: "kr",
     title: "케이비",
@@ -67,7 +65,7 @@ export const sidebarRealtimeKrListItems: ISidebarRealtimeKrListItems[] = [
     upOrDownPercent: 8,
   },
   {
-    id: `${uuidv4()}`,
+    id: `lg`,
     img: "icn-lg.png",
     krOrUs: "kr",
     title: "엘지",
@@ -75,7 +73,7 @@ export const sidebarRealtimeKrListItems: ISidebarRealtimeKrListItems[] = [
     upOrDownPercent: 11,
   },
   {
-    id: `${uuidv4()}`,
+    id: `naver`,
     img: "icn-naver.png",
     krOrUs: "kr",
     title: "네이버",
@@ -83,7 +81,7 @@ export const sidebarRealtimeKrListItems: ISidebarRealtimeKrListItems[] = [
     upOrDownPercent: 3,
   },
   {
-    id: `${uuidv4()}`,
+    id: `navi`,
     img: "icn-navi.png",
     krOrUs: "kr",
     title: "경동나비엔",

@@ -23,18 +23,17 @@ const ContentsWrapper = styled.div`
   flex-shrink: 1;
   flex-basis: 0;
   min-width: 0;
-  min-height: 100vh;
   align-items: center;
-  height: 5000px;
 `;
 
 const MainWrapper = styled.main`
   width: 100%;
-  min-height: 100vh;
-  flex-grow: 1;
-  flex-shrink: 1;
-  flex-basis: 0;
   isolation: isolate;
+`;
+
+const ChildrenWrapper = styled.div`
+  max-width: 1280px;
+  margin: 0 auto;
 `;
 
 interface ILayoutProps {
@@ -55,7 +54,7 @@ export default function Layout(props: ILayoutProps): React.ReactElement {
       <ContentsWrapper>
         {!isHiddenHeader && <LayoutHeader />}
         <MainWrapper>
-          <div>{props.children}</div>
+          <ChildrenWrapper>{props.children}</ChildrenWrapper>
         </MainWrapper>
         <LayoutFooter />
       </ContentsWrapper>
