@@ -11,10 +11,10 @@ export default function App({ Component, pageProps }: AppProps) {
 
   // Get a list of cities from your database
   async function getStockIndexItems(db) {
-    const citiesCol = collection(db, "stock-index-items");
-    const citySnapshot = await getDocs(citiesCol);
-    const cityList = citySnapshot.docs.map((doc) => doc.data());
-    return cityList;
+    const stocksCol = collection(db, "stocks");
+    const stockSnapshot = await getDocs(stocksCol);
+    const stockList = stockSnapshot.docs.map((doc) => doc.data());
+    return stockList;
   }
 
   useEffect(() => {
