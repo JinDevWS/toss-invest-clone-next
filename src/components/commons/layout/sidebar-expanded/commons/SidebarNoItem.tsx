@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { CopyFilled } from "@ant-design/icons";
+import { ISidebarNoItemProps } from "@/src/commons/types/types";
 
 const Article = styled.article`
   width: 100%;
@@ -23,10 +24,6 @@ const NoItemText = styled.p`
   font-size: 14px;
   font-weight: bold;
 `;
-
-interface ISidebarNoItemProps {
-  noItemText: string;
-}
 
 export default function SidebarNoItem({
   noItemText,

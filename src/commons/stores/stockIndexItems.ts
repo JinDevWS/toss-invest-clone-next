@@ -1,11 +1,4 @@
-export interface IStockIndexItem {
-  title: string;
-  krOrUs: string;
-  price: number;
-  changedPrice: number;
-  changedRate: number;
-  graph: string;
-}
+import { IStockIndexItem } from "../types/types";
 
 export const stockIndexItemIdsUs: string[] = [
   "stockIndexNasdaq",

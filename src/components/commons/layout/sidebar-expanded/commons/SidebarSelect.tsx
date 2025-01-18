@@ -1,6 +1,4 @@
-import { ISidebarMyInvestOptionList } from "@/src/commons/stores/sidebarMyInvestOptionList";
-import { ISidebarRealTimeFilterOptionList } from "@/src/commons/stores/sidebarRealTimeFilterOptionList";
-import { ISidebarRealTimeFilterTimeOptionList } from "@/src/commons/stores/sidebarRealTimeFilterTimeOptionList";
+import { ISidebarSelectProps } from "@/src/commons/types/types";
 import { DownOutlined, CheckOutlined } from "@ant-design/icons";
 import styled from "@emotion/styled";
 import { useState, useRef, useEffect } from "react";
@@ -64,19 +62,6 @@ const SelectOptionIcon = styled(SelectOption)`
   font-size: 10px;
   padding: 5px 0 5px 5px;
 `;
-
-interface ISidebarSelectProps {
-  selectedInitValue: string;
-  selectBtnInitText: string;
-  selectBtnId: string;
-  selectMenuId: string;
-  optionList:
-    | ISidebarMyInvestOptionList[]
-    | (
-        | ISidebarRealTimeFilterOptionList[]
-        | ISidebarRealTimeFilterTimeOptionList[]
-      );
-}
 
 export default function SidebarSelect(
   props: ISidebarSelectProps,

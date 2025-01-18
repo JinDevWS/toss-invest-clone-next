@@ -2,11 +2,7 @@ import SidebarH2DollarSwitch from "../commons/SidebarH2DollarSwitch";
 import SidebarHr from "../commons/SidebarHr";
 import { Section, Header } from "@/styles/sidebar/SidebarExpandedSection.js";
 import SidebarNoItem from "../commons/SidebarNoItem";
-
-interface ISidebarExpandedMyRecent {
-  isDollar: boolean;
-  dollarBtnHandleClick: (e: React.MouseEvent<HTMLSpanElement>) => void;
-}
+import { ISidebarExpandedMyRecent } from "@/src/commons/types/types";
 
 export default function SidebarExpandedMyRecent({
   isDollar,

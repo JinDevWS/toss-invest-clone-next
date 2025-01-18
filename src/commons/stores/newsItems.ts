@@ -1,8 +1,4 @@
-interface INewsItem {
-  title: string;
-  hour: number;
-  newspaper: string;
-}
+import { INewsItem } from "../types/types";
 
 export const newsItems: INewsItem[] = [
   {

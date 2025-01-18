@@ -1,9 +1,4 @@
-interface IImgNewsItem {
-  img: string;
-  title: string;
-  hour: number;
-  newspaper: string;
-}
+import { IImgNewsItem } from "../types/types";
 
 export const imgNewsItems: IImgNewsItem[] = [
   {

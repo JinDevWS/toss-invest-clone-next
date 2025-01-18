@@ -2,6 +2,7 @@ import DomesticForeignFilter from "@/src/components/units/home/domestic-foreign-
 import FloatingFilter from "@/src/components/units/home/floating-filter";
 import GraphGrid from "@/src/components/units/home/graph-grid";
 import News from "@/src/components/units/home/news";
+import RealTimeChart from "@/src/components/units/home/realtime-chart";
 import { CalendarFilled } from "@ant-design/icons";
 import styled from "@emotion/styled";
 
@@ -37,7 +38,7 @@ const CalendarIcon = styled.span`
   margin-right: 5px;
 `;
 
-export default function HomePage() {
+export default function HomePage(): React.ReactElement {
   return (
     <HomeWrapper>
       <FloatingFilter />
@@ -52,6 +53,7 @@ export default function HomePage() {
       </FilterCalendarWrapper>
       <GraphGrid />
       <News />
+      <RealTimeChart />
     </HomeWrapper>
   );
 }

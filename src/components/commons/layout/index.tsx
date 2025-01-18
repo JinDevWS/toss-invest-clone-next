@@ -3,6 +3,7 @@ import LayoutSidebar from "../layout/sidebar";
 import LayoutFooter from "../layout/footer";
 import { useRouter } from "next/router";
 import styled from "@emotion/styled";
+import { ILayoutProps } from "@/src/commons/types/types";
 
 const HIDDEN_HEADERS: string[] = [
   //   "/section13/13-01-library-icon",
@@ -35,10 +36,6 @@ const ChildrenWrapper = styled.div`
   max-width: 1280px;
   margin: 0 auto;
 `;
-
-interface ILayoutProps {
-  children: React.ReactElement;
-}
 
 export default function Layout(props: ILayoutProps): React.ReactElement {
   const router = useRouter();

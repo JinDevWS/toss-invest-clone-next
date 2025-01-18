@@ -1,7 +1,4 @@
-export interface ISidebarRealTimeFilterOptionList {
-  value: string;
-  label: string;
-}
+import { ISidebarRealTimeFilterOptionList } from "../types/types";
 
 export const sidebarRealTimeFilterOptionList: ISidebarRealTimeFilterOptionList[] =
   [

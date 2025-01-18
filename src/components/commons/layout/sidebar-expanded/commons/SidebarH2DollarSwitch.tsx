@@ -1,3 +1,4 @@
+import { ISidebarH2DollarSwitchProps } from "@/src/commons/types/types";
 import styled from "@emotion/styled";
 
 const H2Wrapper = styled.div`
@@ -51,12 +52,6 @@ const DollarToggleBtn = styled.span<{
   transition: left 100ms linear;
   z-index: 0;
 `;
-
-interface ISidebarH2DollarSwitchProps {
-  h2Text: string;
-  isDollar: boolean;
-  dollarBtnHandleClick: (e: React.MouseEvent<HTMLSpanElement>) => void;
-}
 
 export default function SidebarH2DollarSwitch(
   props: ISidebarH2DollarSwitchProps,

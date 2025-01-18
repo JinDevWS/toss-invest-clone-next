@@ -1,7 +1,4 @@
-export interface ISidebarMyInvestOptionList {
-  value: string;
-  label: string;
-}
+import { ISidebarMyInvestOptionList } from "../types/types";
 
 export const sidebarMyInvestOptionList: ISidebarMyInvestOptionList[] = [
   { value: "ganada", label: "가나다 순" },

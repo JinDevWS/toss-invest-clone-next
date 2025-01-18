@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import * as GGI from "@/styles/graph-grid/GraphGridItems";
 
-export default function GraphGridBond() {
+export default function GraphGridBond(): React.ReactElement {
   const domesticForeignAll = useRecoilValue(domesticForeignState);
   const gridItems = bondItems;
   const [bondItemIds, setBondItemIds] = useState<string[]>(bondItemIdsUs);

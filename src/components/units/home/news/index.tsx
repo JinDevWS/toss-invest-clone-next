@@ -7,7 +7,7 @@ const IMAGE_PATH = "./assets/images/";
 
 const NewsSection = styled.section`
   width: 100%;
-  margin-bottom: 70px;
+  margin-bottom: 75px;
 `;
 
 const NewsHeader = styled.header`
@@ -97,7 +97,7 @@ const NewsGrid = styled.div`
   }
 `;
 
-export default function News() {
+export default function News(): React.ReactElement {
   return (
     <NewsSection>
       <NewsHeader>

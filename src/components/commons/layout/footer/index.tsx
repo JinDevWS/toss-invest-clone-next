@@ -52,7 +52,7 @@ const WarnText = styled.p`
   color: #8b95a1;
 `;
 
-export default function LayoutFooter() {
+export default function LayoutFooter(): React.ReactElement {
   return (
     <Wrapper>
       <Nav>

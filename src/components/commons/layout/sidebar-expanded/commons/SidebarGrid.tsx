@@ -2,8 +2,7 @@ import { HeartFilled } from "@ant-design/icons";
 import styled from "@emotion/styled";
 import { useRecoilValue } from "recoil";
 import { sidebarClickBtnState } from "@/src/commons/atom/sidebarClickBtnState";
-import { ISidebarInterestListItems } from "@/src/commons/stores/sidebarInterestListItems";
-import { ISidebarRealtimeKrListItems } from "@/src/commons/stores/sidebarRealtimeKrListItems";
+import { ISidebarGridProps } from "@/src/commons/types/types";
 
 const BASE_IMAGE_PATH = "./assets/images";
 
@@ -112,11 +111,6 @@ const HeartFilledHover = styled(HeartFilled)`
     color: #acb2bd;
   }
 `;
-
-interface ISidebarGridProps {
-  itemList: ISidebarInterestListItems[] | ISidebarRealtimeKrListItems[];
-  isDollar: boolean;
-}
 
 const EXCHANGE_RATE = 0.0006816; // 환율 상수
 const dollarCalc = (won: number): string => {

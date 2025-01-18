@@ -1,9 +1,4 @@
-export interface IMaterialsItem {
-  title: string;
-  price: number;
-  changedPrice: number;
-  changedRate: number;
-}
+import { IMaterialsItem } from "../types/types";
 
 export const materialsItemIds: string[] = [
   "materialsGold",

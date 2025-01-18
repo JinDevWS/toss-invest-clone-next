@@ -7,6 +7,7 @@ import {
 } from "@ant-design/icons";
 import { useRecoilValue } from "recoil";
 import { sidebarClickBtnState } from "@/src/commons/atom/sidebarClickBtnState";
+import { ILayoutSidebarCollapsedProps } from "@/src/commons/types/types";
 
 const Wrapper = styled.div`
   display: flex;
@@ -75,20 +76,6 @@ const Hr = styled.hr`
   border: 0;
   background-color: #dde1e5;
 `;
-
-interface IBtnData {
-  id: string;
-  href: string;
-  icon: JSX.Element;
-  text: string;
-}
-
-interface ILayoutSidebarCollapsedProps {
-  active: string | boolean;
-  handleClick: (e: React.MouseEvent<HTMLAnchorElement>) => void;
-  handleMouseOver: (e: React.MouseEvent<HTMLAnchorElement>) => void;
-  handleMouseOut: (e: React.MouseEvent<HTMLAnchorElement>) => void;
-}
 
 export default function LayoutSidebarCollapsed(
   props: ILayoutSidebarCollapsedProps,

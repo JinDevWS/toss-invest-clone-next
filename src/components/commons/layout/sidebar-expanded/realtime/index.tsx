@@ -9,6 +9,7 @@ import SidebarSelect from "../commons/SidebarSelect";
 import { useState } from "react";
 import { sidebarRealTimeFilterOptionList } from "@/src/commons/stores/sidebarRealTimeFilterOptionList";
 import { sidebarRealTimeFilterTimeOptionList } from "@/src/commons/stores/sidebarRealTimeFilterTimeOptionList";
+import { ISidebarExpandedRealtimeProps } from "@/src/commons/types/types";
 
 const SidebarDomesticFilterSwitch = styled.button`
   width: 150px;
@@ -61,11 +62,6 @@ const SelectBox = styled.div`
   justify-content: space-between;
   margin: 12px 0 5px 0;
 `;
-
-interface ISidebarExpandedRealtimeProps {
-  isDollar: boolean;
-  dollarBtnHandleClick: (e: React.MouseEvent<HTMLSpanElement>) => void;
-}
 
 export default function SidebarExpandedRealtime({
   isDollar,

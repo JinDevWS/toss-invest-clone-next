@@ -1,10 +1,4 @@
-export interface IBondItem {
-  title: string;
-  krOrUs: string;
-  price: number;
-  changedPrice: number;
-  changedRate: number;
-}
+import { IBondItem } from "../types/types";
 
 export const bondItemIdsUs: string[] = [
   "bond2Years",

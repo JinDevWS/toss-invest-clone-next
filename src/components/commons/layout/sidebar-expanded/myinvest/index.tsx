@@ -9,6 +9,7 @@ import {
   FilterWrapper,
 } from "@/styles/sidebar/SidebarExpandedSection.js";
 import { sidebarMyInvestOptionList } from "@/src/commons/stores/sidebarMyInvestOptionList";
+import { ISidebarExpandedMyInvestProps } from "@/src/commons/types/types";
 
 const MoneySwitch = styled.button`
   width: 100px;
@@ -50,13 +51,6 @@ const MoneyToggleBtn = styled.span<{
   transition: left 100ms linear;
   z-index: 0;
 `;
-
-interface ISidebarExpandedMyInvestProps {
-  isDollar: boolean;
-  isNow: boolean;
-  dollarBtnHandleClick: (e: React.MouseEvent<HTMLSpanElement>) => void;
-  nowBtnHandleClick: (e: React.MouseEvent<HTMLSpanElement>) => void;
-}
 
 export default function SidebarExpandedMyInvest({
   isDollar,

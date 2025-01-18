@@ -1,11 +1,4 @@
-export interface ISidebarInterestListItems {
-  id: string;
-  img: string;
-  krOrUs: string;
-  title: string;
-  priceWon: number;
-  upOrDownPercent: number;
-}
+import { ISidebarInterestListItems } from "../types/types";
 
 export const sidebarInterestListItems: ISidebarInterestListItems[] = [
   {

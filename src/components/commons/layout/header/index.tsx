@@ -80,7 +80,7 @@ const LoginBtn = styled.button`
   cursor: pointer;
 `;
 
-export default function LayoutHeader() {
+export default function LayoutHeader(): React.ReactElement {
   return (
     <HeaderWrapper>
       <H1>

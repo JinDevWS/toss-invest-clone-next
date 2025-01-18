@@ -1,11 +1,4 @@
-export interface ISidebarRealtimeKrListItems {
-  id: string;
-  img: string;
-  krOrUs: string;
-  title: string;
-  priceWon: number;
-  upOrDownPercent: number;
-}
+import { ISidebarRealtimeKrListItems } from "../types/types";
 
 export const sidebarRealtimeKrListItems: ISidebarRealtimeKrListItems[] = [
   {

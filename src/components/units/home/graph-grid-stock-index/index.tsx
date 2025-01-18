@@ -10,7 +10,7 @@ import { useRecoilValue } from "recoil";
 import NasdaqGraph from "@/public/assets/images/svgs/nasdaq-graph.svg";
 import * as GGI from "@/styles/graph-grid/GraphGridItems";
 
-export default function GraphGridStockIndex() {
+export default function GraphGridStockIndex(): React.ReactElement {
   const domesticForeignAll = useRecoilValue(domesticForeignState);
   const gridItems = stockIndexItems;
   const [stockIndexItemIds, setStockIndexItemIds] =

@@ -3,11 +3,7 @@ import SidebarHr from "../commons/SidebarHr";
 import { Section, Header } from "@/styles/sidebar/SidebarExpandedSection.js";
 import { sidebarInterestListItems } from "@/src/commons/stores/sidebarInterestListItems";
 import SidebarGrid from "../commons/SidebarGrid";
-
-interface ISidebarExpandedMyInvestProps {
-  isDollar: boolean;
-  dollarBtnHandleClick: (e: React.MouseEvent<HTMLSpanElement>) => void;
-}
+import { ISidebarExpandedMyInvestProps } from "@/src/commons/types/types";
 
 export default function SidebarExpandedMyInvest({
   isDollar,

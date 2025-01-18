@@ -10,7 +10,7 @@ const Space = styled.div`
   width: 40px;
 `;
 
-export default function GraphGridMaterials() {
+export default function GraphGridMaterials(): React.ReactElement {
   const gridItems = materialsItems;
 
   return (
