@@ -1,5 +1,8 @@
+import { realtimeChartTossState } from "@/src/commons/atom/realtimeChartTossState";
 import { useGetItemsPagination } from "@/src/commons/hooks/useGetItemsPagination";
 import styled from "@emotion/styled";
+import { OrderByDirection } from "firebase/firestore";
+import { useRecoilValue } from "recoil";
 
 const STOCK_ICON_PATH = "./assets/images/stock-icons-";
 const ICON_PATH = "./assets/images/";
@@ -133,12 +136,36 @@ const IconUs = styled.img`
 `;
 
 export default function RealtimeChartTable(): React.ReactElement {
+  const tossActiveFilter = useRecoilValue(realtimeChartTossState);
+
+  let order: string = "transactionPrice";
+  let sort: OrderByDirection = "desc";
+  if (tossActiveFilter === "tossMoney" || tossActiveFilter === "money") {
+    order = "transactionPrice";
+  } else if (
+    tossActiveFilter === "tossAmount" ||
+    tossActiveFilter === "amount"
+  ) {
+    order = "amount";
+  } else if (tossActiveFilter === "down" || tossActiveFilter === "up") {
+    order = "changedRate";
+    if (tossActiveFilter === "down") {
+      sort = "asc";
+    }
+  } else {
+    order = "title";
+    sort = "asc";
+  }
+
   const itemList = useGetItemsPagination(
     "stocks",
-    "transactionPrice",
-    "desc",
+    // "transactionPrice",
+    order,
+    // "desc",
+    sort,
     10,
     1,
+    // page,
   );
 
   return (
