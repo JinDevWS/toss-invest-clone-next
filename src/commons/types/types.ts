@@ -1,3 +1,5 @@
+import { DocumentData } from "firebase/firestore";
+
 export interface IBondItem {
   title: string;
   krOrUs: string;
@@ -134,4 +136,19 @@ export interface ISidebarExpandedRealtimeProps {
 export interface ISidebarExpandedMyRecent {
   isDollar: boolean;
   dollarBtnHandleClick: (e: React.MouseEvent<HTMLSpanElement>) => void;
+}
+
+export interface IPaginationProps {
+  currentPage: number;
+  prevActive: boolean;
+  nextActive: boolean;
+  totalLimitNum: number;
+  limitNum: number;
+  pageBtnHandleClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  prevBtnHandleClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  nextBtnHandleClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+export interface IRealtimeChartTableProps {
+  itemList: DocumentData[];
 }

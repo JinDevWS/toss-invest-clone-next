@@ -1,17 +1,15 @@
-import { realtimeChartTossState } from "@/src/commons/atom/realtimeChartTossState";
-import { useGetItemsPagination } from "@/src/commons/hooks/useGetItemsPagination";
+import { IRealtimeChartTableProps } from "@/src/commons/types/types";
 import styled from "@emotion/styled";
-import { OrderByDirection } from "firebase/firestore";
-import { useRecoilValue } from "recoil";
 
 const STOCK_ICON_PATH = "./assets/images/stock-icons-";
 const ICON_PATH = "./assets/images/";
 
 const TableWrapper = styled.div`
   width: 100%;
-  min-height: 550px;
+  min-height: 500px;
   overflow-x: scroll;
   scrollbar-width: none;
+  margin-bottom: 40px;
 `;
 const Table = styled.table`
   table-layout: fixed;
@@ -40,7 +38,7 @@ const Tbody = styled.tbody`
   border-radius: 10px;
 `;
 const Tr = styled.tr`
-  height: 44px;
+  height: 48px;
   border-radius: 10px;
   cursor: pointer;
   &:nth-of-type(odd) td {
@@ -93,7 +91,7 @@ const Td = styled.td`
     width: 30px;
     position: sticky;
     top: 0;
-    left: 38px;
+    left: 36px;
     z-index: 2;
   }
   &:nth-of-type(3) {
@@ -102,7 +100,7 @@ const Td = styled.td`
     padding-left: 5px;
     position: sticky;
     top: 0;
-    left: calc(38px + 30px);
+    left: calc(36px + 30px);
     z-index: 2;
   }
   &:last-of-type {
@@ -135,39 +133,9 @@ const IconUs = styled.img`
   z-index: 3;
 `;
 
-export default function RealtimeChartTable(): React.ReactElement {
-  const tossActiveFilter = useRecoilValue(realtimeChartTossState);
-
-  let order: string = "transactionPrice";
-  let sort: OrderByDirection = "desc";
-  if (tossActiveFilter === "tossMoney" || tossActiveFilter === "money") {
-    order = "transactionPrice";
-  } else if (
-    tossActiveFilter === "tossAmount" ||
-    tossActiveFilter === "amount"
-  ) {
-    order = "amount";
-  } else if (tossActiveFilter === "down" || tossActiveFilter === "up") {
-    order = "changedRate";
-    if (tossActiveFilter === "down") {
-      sort = "asc";
-    }
-  } else {
-    order = "title";
-    sort = "asc";
-  }
-
-  const itemList = useGetItemsPagination(
-    "stocks",
-    // "transactionPrice",
-    order,
-    // "desc",
-    sort,
-    10,
-    1,
-    // page,
-  );
-
+export default function RealtimeChartTable({
+  itemList,
+}: IRealtimeChartTableProps): React.ReactElement {
   return (
     <TableWrapper>
       <Table>
@@ -190,9 +158,9 @@ export default function RealtimeChartTable(): React.ReactElement {
           </Tr>
         </Thead>
         <Tbody>
-          {itemList.map((el, index) => (
+          {itemList.map((el) => (
             <Tr key={el._id}>
-              <Td>{index + 1}</Td>
+              <Td>{el._index + 1}</Td>
               <Td>
                 <IconWrapper>
                   <IconBox>
