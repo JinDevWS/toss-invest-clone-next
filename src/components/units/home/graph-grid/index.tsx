@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
 import { useRef, useState } from "react";
-import GraphGridStockIndex from "../graph-grid-stock-index";
-import GraphGridBond from "../graph-grid-bond";
+import GraphGridStockIndex from "./graph-grid-stock-index";
+import GraphGridBond from "./graph-grid-bond";
 import CarouselBtn from "@/public/assets/images/svgs/carousel-btn.svg";
-import GraphGridMaterials from "../graph-grid-materials";
+import GraphGridMaterials from "./graph-grid-materials";
 import { keyframes } from "@emotion/react";
 
 const GraphGridSection = styled.section`
