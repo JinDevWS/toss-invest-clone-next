@@ -3,6 +3,7 @@ import FloatingFilter from "@/src/components/units/home/floating-filter";
 import GraphGrid from "@/src/components/units/home/graph-grid";
 import News from "@/src/components/units/home/news";
 import RealTimeChart from "@/src/components/units/home/realtime-chart";
+import RisingCategory from "@/src/components/units/home/rising-category";
 import { CalendarFilled } from "@ant-design/icons";
 import styled from "@emotion/styled";
 
@@ -54,6 +55,7 @@ export default function HomePage(): React.ReactElement {
       <GraphGrid />
       <News />
       <RealTimeChart />
+      <RisingCategory />
     </HomeWrapper>
   );
 }

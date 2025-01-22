@@ -152,3 +152,7 @@ export interface IPaginationProps {
 export interface IRealtimeChartTableProps {
   itemList: DocumentData[];
 }
+
+export interface ICategoriesProps {
+  itemList: DocumentData[];
+}
