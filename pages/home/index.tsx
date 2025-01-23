@@ -1,3 +1,4 @@
+import Community from "@/src/components/units/home/community";
 import DomesticForeignFilter from "@/src/components/units/home/domestic-foreign-filter";
 import FloatingFilter from "@/src/components/units/home/floating-filter";
 import GraphGrid from "@/src/components/units/home/graph-grid";
@@ -56,6 +57,7 @@ export default function HomePage(): React.ReactElement {
       <News />
       <RealTimeChart />
       <RisingCategory />
+      <Community />
     </HomeWrapper>
   );
 }

@@ -3,9 +3,10 @@
 import { stockData } from "@/src/commons/stores/stockData";
 import { stockDataKr } from "@/src/commons/stores/stockDataKr";
 import { risingCategoryItems } from "@/src/commons/stores/risingCategoryItems";
+import { communityItems } from "@/src/commons/stores/communityItems";
 
 const addData = async () => {
-  const data = risingCategoryItems;
+  const data = communityItems;
 
   try {
     const response = await fetch("/api/addData", {
