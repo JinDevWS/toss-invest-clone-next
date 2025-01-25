@@ -12,11 +12,11 @@ import {
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
 
-export function useGetItemsKrOrUs(
+export function useGetComments(
   collectionName: string,
   order: string,
   sort: OrderByDirection,
-  krOrUs: string,
+  community: string,
   limitNum: number,
 ): DocumentData[] {
   const [items, setItems] = useState<DocumentData[]>([]);
@@ -26,7 +26,7 @@ export function useGetItemsKrOrUs(
     const fetchData = async () => {
       const q = query(
         collection(db, collectionName),
-        where("krOrUs", "==", krOrUs),
+        where("community", "==", community),
         orderBy(order, sort),
         limit(limitNum),
       );
@@ -41,7 +41,7 @@ export function useGetItemsKrOrUs(
     };
 
     fetchData();
-  }, [collectionName, order, sort, krOrUs, limitNum]);
+  }, [collectionName, order, sort, community, limitNum]);
 
   return items; // 데이터를 반환
 }

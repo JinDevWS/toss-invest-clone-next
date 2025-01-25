@@ -29,7 +29,7 @@ export const communityItems = [
     changedRate: 18.1,
     krOrUs: "us",
     img: "icn-NAS0WD6PX.png",
-    order: 1,
+    order: 4,
   },
   {
     id: "gabf",
@@ -37,7 +37,7 @@ export const communityItems = [
     changedRate: 0.0,
     krOrUs: "us",
     img: "icn-GABF.png",
-    order: 1,
+    order: 5,
   },
   {
     id: "goyoung",
@@ -69,7 +69,7 @@ export const communityItems = [
     changedRate: 6.6,
     krOrUs: "kr",
     img: "icn-437730.png",
-    order: 1,
+    order: 4,
   },
   {
     id: "skhinics",
@@ -77,6 +77,6 @@ export const communityItems = [
     changedRate: -1.9,
     krOrUs: "kr",
     img: "icn-000660.png",
-    order: 1,
+    order: 5,
   },
 ];

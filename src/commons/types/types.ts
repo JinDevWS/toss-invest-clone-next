@@ -1,4 +1,5 @@
 import { DocumentData } from "firebase/firestore";
+import { RefObject } from "react";
 
 export interface IBondItem {
   title: string;
@@ -155,4 +156,15 @@ export interface IRealtimeChartTableProps {
 
 export interface ICategoriesProps {
   itemList: DocumentData[];
+}
+
+export interface IRankingAsideProps {
+  activeCommunity: string;
+  ulRef: RefObject<HTMLUListElement>;
+  itemList: DocumentData[];
+  commuBtnHandleClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+export interface ICommentsProps {
+  commentList: DocumentData[];
 }
