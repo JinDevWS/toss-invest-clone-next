@@ -38,6 +38,8 @@ export default function Community(): React.ReactElement {
   const domesticForeign = useRecoilValue(domesticForeignState);
   const [activeCommunity, setActiveCommunity] = useState<string>("");
   const ulRef = useRef<HTMLUListElement>(null);
+  const commentTitleRef = useRef<HTMLTextAreaElement>(null);
+  const commentRef = useRef<HTMLTextAreaElement>(null);
 
   const itemList = useGetItemsKrOrUs(
     "community",
@@ -76,6 +78,57 @@ export default function Community(): React.ReactElement {
     100,
   );
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    // 브라우저 페이지 리로딩 기본동작 막기
+    e.preventDefault();
+
+    const formDataArr: Array<object> = [];
+
+    // 폼 데이터 읽기
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+
+    if (formData.get("comment") === "") {
+      alert("댓글을 입력해주세요.");
+      return;
+    }
+
+    // FormData를 JSON이 담긴 배열로 변환
+    const formDataJson: Record<string, string | boolean> = {};
+    formData.forEach((value, key) => {
+      formDataJson[key] = value.toString();
+    });
+
+    // 나머지 데이터 추가
+    formDataJson["community"] = activeCommunity;
+    formDataJson["class"] = "";
+    formDataJson["dateTime"] = moment().format("YYYY-MM-DD HH:mm:ss");
+    formDataJson["icon"] = "icon-user-circle.png";
+    formDataJson["nickname"] = "테스트";
+    formDataJson["isStockholder"] = true;
+
+    formDataArr.push(formDataJson);
+
+    try {
+      const response = await fetch("/api/submitComment", {
+        method: form.method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formDataArr),
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        console.log(result.message);
+        if (commentTitleRef.current) commentTitleRef.current.value = "";
+        if (commentRef.current) commentRef.current.value = "";
+      } else {
+        console.error(result.error);
+      }
+    } catch (error) {
+      console.error("Error sending data:", error);
+    }
+  };
+
   return (
     <Section>
       <Header>
@@ -89,7 +142,12 @@ export default function Community(): React.ReactElement {
           itemList={itemList}
           commuBtnHandleClick={commuBtnHandleClick}
         />
-        <Comments commentList={commentList} />
+        <Comments
+          commentTitleRef={commentTitleRef}
+          commentRef={commentRef}
+          commentList={commentList}
+          handleSubmit={handleSubmit}
+        />
       </Article>
     </Section>
   );

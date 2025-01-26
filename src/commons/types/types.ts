@@ -166,5 +166,8 @@ export interface IRankingAsideProps {
 }
 
 export interface ICommentsProps {
+  commentTitleRef: RefObject<HTMLTextAreaElement>;
+  commentRef: RefObject<HTMLTextAreaElement>;
   commentList: DocumentData[];
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 }

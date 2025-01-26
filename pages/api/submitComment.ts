@@ -2,13 +2,18 @@
 
 import { app } from "@/firebase";
 import { doc, getFirestore, setDoc } from "firebase/firestore";
+import { NextApiRequest, NextApiResponse } from "next";
+import { v4 as uuidv4 } from "uuid";
 
-export default async function firebaseAddDataHandler(req, res) {
+export default async function submitCommentHandler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
   const db = getFirestore(app);
 
   if (req.method === "POST") {
     try {
-      const { data } = req.body; // 클라이언트에서 전송한 데이터
+      const data = req.body; // 클라이언트에서 전송한 데이터
 
       if (!Array.isArray(data)) {
         return res
@@ -17,8 +22,8 @@ export default async function firebaseAddDataHandler(req, res) {
       }
 
       // 데이터를 Firestore에 추가
-      const promises = data.map((item, index) => {
-        const docRef = doc(db, "comment", `${item.community}-${index}`); // 문서 ID 생성
+      const promises = data.map((item) => {
+        const docRef = doc(db, "comment", `${item.community}-${uuidv4()}`); // 문서 ID 생성
         return setDoc(docRef, item); // Firestore에 데이터 저장
       });
 
