@@ -18,6 +18,7 @@ export function useGetComments(
   sort: OrderByDirection,
   community: string,
   limitNum: number,
+  triggerReload: boolean, // 상태 업데이트하여 댓글 리스트 새로고침 트리거
 ): DocumentData[] {
   const [items, setItems] = useState<DocumentData[]>([]);
   const db = getFirestore(app);
@@ -41,7 +42,7 @@ export function useGetComments(
     };
 
     fetchData();
-  }, [collectionName, order, sort, community, limitNum]);
+  }, [collectionName, order, sort, community, limitNum, triggerReload]);
 
   return items; // 데이터를 반환
 }

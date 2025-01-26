@@ -31,6 +31,8 @@ const Article = styled.article`
 `;
 
 export default function Community(): React.ReactElement {
+  const [triggerReload, setTriggerReload] = useState(false);
+
   useEffect(() => {
     moment.locale("ko");
   }, []);
@@ -76,6 +78,7 @@ export default function Community(): React.ReactElement {
     "desc",
     activeCommunity,
     100,
+    triggerReload, // 상태 업데이트하여 댓글 리스트 새로고침 트리거
   );
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -119,8 +122,12 @@ export default function Community(): React.ReactElement {
       const result = await response.json();
       if (response.ok) {
         console.log(result.message);
+        // 댓글 textarea 비워주기
         if (commentTitleRef.current) commentTitleRef.current.value = "";
         if (commentRef.current) commentRef.current.value = "";
+
+        // 상태 업데이트하여 댓글 리스트 새로고침 트리거
+        setTriggerReload((prev) => !prev);
       } else {
         console.error(result.error);
       }
