@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 import moment from "moment";
 import "moment/locale/ko";
 import { useEffect, useRef } from "react";
+import Dompurify from "dompurify";
 
 const ICON_PATH = "./assets/images/community/";
 
@@ -213,8 +214,24 @@ export default function Comments({
                 </DateTime>
               </NicknameBox>
               <CommentBox>
-                <CommentTitle>{el.commentTitle}</CommentTitle>
-                <Comment>{el.comment}</Comment>
+                {process.browser && (
+                  <CommentTitle
+                    dangerouslySetInnerHTML={{
+                      __html: Dompurify.sanitize(
+                        String(el.commentTitle).replaceAll("\n", "<br />"),
+                      ),
+                    }}
+                  />
+                )}
+                {process.browser && (
+                  <Comment
+                    dangerouslySetInnerHTML={{
+                      __html: Dompurify.sanitize(
+                        String(el.comment).replaceAll("\n", "<br />"),
+                      ),
+                    }}
+                  />
+                )}
               </CommentBox>
             </ContentsBox>
           </Li>
