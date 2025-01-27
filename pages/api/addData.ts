@@ -18,7 +18,7 @@ export default async function firebaseAddDataHandler(req, res) {
 
       // 데이터를 Firestore에 추가
       const promises = data.map((item, index) => {
-        const docRef = doc(db, "comment", `${item.community}-${index}`); // 문서 ID 생성
+        const docRef = doc(db, "etf-items-us", `${item.category}-${index}`); // 문서 ID 생성
         return setDoc(docRef, item); // Firestore에 데이터 저장
       });
 
