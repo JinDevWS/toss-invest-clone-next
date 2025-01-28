@@ -145,9 +145,9 @@ export interface IPaginationProps {
   nextActive: boolean;
   totalLimitNum: number;
   limitNum: number;
-  pageBtnHandleClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  prevBtnHandleClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  nextBtnHandleClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  goToPage: (page: number) => void;
+  goToPrevPage: () => void;
+  goToNextPage: () => void;
 }
 
 export interface IRealtimeChartTableProps {
@@ -170,4 +170,16 @@ export interface ICommentsProps {
   commentRef: RefObject<HTMLTextAreaElement>;
   commentList: DocumentData[];
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+}
+
+export interface INetBuySellListProps {
+  buyOrSell: string;
+}
+
+export interface IUsEtfListProps {
+  currentPage: number;
+}
+
+export interface IEtfListProps {
+  itemList: DocumentData[];
 }

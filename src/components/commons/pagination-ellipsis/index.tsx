@@ -70,6 +70,11 @@ const PageButton = styled.button<{
 const Icon = styled.img`
   width: 25px;
 `;
+const LineIcon = styled.img`
+  display: block;
+  width: 25px;
+  margin: 0 5px;
+`;
 const NextBtn = styled.button<{
   nextActive: boolean;
 }>`
@@ -92,7 +97,7 @@ const NextBtn = styled.button<{
   cursor: ${(props) => (props.nextActive ? "pointer" : "not-allowed")};
 `;
 
-export default function Pagination({
+export default function PaginationEllipsis({
   currentPage,
   prevActive,
   nextActive,
@@ -125,21 +130,60 @@ export default function Pagination({
         </PrevBtn>
         <PageNumBox>
           <Ul>
-            {pageNumList.map((el, index) => (
-              <Li key={index}>
-                <PageButton
-                  type="button"
-                  id={`pageBtn-${el}`}
-                  currentPage={currentPage}
-                  onClick={(e) => {
-                    const newPage = Number(e.currentTarget.id.split("-")[1]);
-                    goToPage(newPage);
-                  }}
-                >
-                  {el}
-                </PageButton>
-              </Li>
-            ))}
+            {pageNumList.map((el, index) => {
+              if (currentPage <= 5) {
+                if (
+                  index !== pageNumList.length - 3 &&
+                  index !== pageNumList.length - 2
+                ) {
+                  return (
+                    <Li key={index}>
+                      <PageButton
+                        type="button"
+                        id={`pageBtn-${el}`}
+                        currentPage={currentPage}
+                        onClick={(e) => {
+                          const newPage = Number(
+                            e.currentTarget.id.split("-")[1],
+                          );
+                          goToPage(newPage);
+                        }}
+                      >
+                        {el}
+                      </PageButton>
+                    </Li>
+                  );
+                } else if (index === pageNumList.length - 3) {
+                  return (
+                    <LineIcon key={index} src={`${ICON_PATH}line-icon.svg`} />
+                  );
+                }
+              } else {
+                if (index !== 1 && index !== 2) {
+                  return (
+                    <Li key={index}>
+                      <PageButton
+                        type="button"
+                        id={`pageBtn-${el}`}
+                        currentPage={currentPage}
+                        onClick={(e) => {
+                          const newPage = Number(
+                            e.currentTarget.id.split("-")[1],
+                          );
+                          goToPage(newPage);
+                        }}
+                      >
+                        {el}
+                      </PageButton>
+                    </Li>
+                  );
+                } else if (index === 1) {
+                  return (
+                    <LineIcon key={index} src={`${ICON_PATH}line-icon.svg`} />
+                  );
+                }
+              }
+            })}
           </Ul>
         </PageNumBox>
         <NextBtn type="button" nextActive={nextActive} onClick={goToNextPage}>
